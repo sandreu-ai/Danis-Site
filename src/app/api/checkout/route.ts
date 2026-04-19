@@ -6,7 +6,7 @@ const Schema = z.object({
   productId: z.string().uuid(),
   productTitle: z.string().min(1),
   productPrice: z.number().int().positive(),
-  productCoverUrl: z.string().url().nullable().optional(),
+  productCoverUrl: z.string().url().nullable().default(null),
   productSlug: z.string().min(1),
 })
 
