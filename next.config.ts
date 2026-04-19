@@ -10,9 +10,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ['sharp'],
-  },
+  serverExternalPackages: ['sharp'],
 }
 
 export default nextConfig
