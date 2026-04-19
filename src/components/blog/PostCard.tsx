@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Badge } from '@/components/ui/Badge'
 import { formatDate, truncate, stripHtml } from '@/lib/utils'
 import type { Post } from '@/types'
 
