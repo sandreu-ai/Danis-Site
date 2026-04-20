@@ -10,28 +10,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: '#FAFAF8',
-        linen: '#F4F1EE',
+        forest: '#2A3E2B',
         sage: {
-          DEFAULT: '#8FAE8B',
-          dark: '#6B8F67',
-          light: '#C0D4BD',
+          DEFAULT: '#4A8C4E',
+          dark: '#3A7040',
+          light: '#C8E6C9',
         },
-        blush: {
-          DEFAULT: '#C9A49C',
-          dark: '#A87E77',
-          light: '#EDD8D4',
-        },
-        stone: '#8A8178',
-        charcoal: {
-          DEFAULT: '#1C1C1C',
-          light: '#5A5A5A',
-        },
+        sun: '#F5C430',
+        peach: '#F4956A',
+        sky: '#89C4D4',
+        cream: '#F6FAF4',
+        linen: '#EDF5E1',
+        stone: '#8A9E8B',
       },
       fontFamily: {
-        serif: ['var(--font-playfair)', 'Georgia', 'serif'],
-        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
-        script: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        sans: ['var(--font-nunito)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-fredoka)', 'system-ui', 'sans-serif'],
+        script: ['var(--font-caveat)', 'cursive'],
       },
       lineHeight: {
         body: '1.75',
@@ -40,11 +35,11 @@ const config: Config = {
         prose: '720px',
       },
       boxShadow: {
-        card: '0 1px 8px rgba(0, 0, 0, 0.05)',
-        'card-hover': '0 8px 30px rgba(0, 0, 0, 0.09)',
+        card: '0 4px 20px rgba(42,62,43,0.08)',
+        'card-hover': '0 8px 40px rgba(42,62,43,0.15)',
       },
       borderRadius: {
-        card: '4px',
+        card: '16px',
       },
     },
   },

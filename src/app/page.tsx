@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { NavBar } from '@/components/ui/NavBar'
 import { Footer } from '@/components/ui/Footer'
@@ -47,28 +48,45 @@ export default async function HomePage() {
       <NavBar />
       <main className="flex-1">
 
-        {/* Hero */}
-        <section className="bg-cream py-24 sm:py-32 lg:py-40">
-          <div className="mx-auto max-w-2xl px-6 text-center">
-            <p className="section-label mb-3">you belong here</p>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-[3.5rem] text-charcoal leading-tight mb-6">
-              Homeschooling Is Simpler<br className="hidden sm:block" /> Than You Think
-            </h1>
-            <div className="divider" />
-            <p className="font-sans text-base text-stone leading-relaxed mt-6 mb-10 max-w-md mx-auto">
-              Real resources, honest encouragement, and a community of moms
-              who get it. You can do this — and you don&apos;t have to figure it out alone.
+        {/* Hero — full screen with hero.jpeg */}
+        <section className="relative min-h-screen flex items-end">
+          <Image
+            src="/hero.jpeg"
+            alt="Daniela and her boys at a creek"
+            fill
+            priority
+            className="object-cover object-top"
+            sizes="100vw"
+          />
+          {/* Gradient overlay: dark at bottom, fading to transparent at top */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          {/* Text overlay */}
+          <div className="relative z-10 w-full pb-16 sm:pb-24 px-6 lg:px-8 max-w-4xl mx-auto text-white">
+            <p className="section-label text-white/90 mb-3" style={{ color: 'rgba(255,255,255,0.9)' }}>
+              welcome, mama
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <h1
+              style={{ fontFamily: 'var(--font-fredoka)', fontWeight: 600 }}
+              className="text-5xl sm:text-6xl lg:text-7xl leading-tight mb-6"
+            >
+              Homeschooling Is Simpler Than You Think
+            </h1>
+            <p className="font-sans text-lg mb-8 max-w-lg" style={{ color: 'rgba(255,255,255,0.8)' }}>
+              Real resources, honest encouragement, and a community of moms who get it.
+              You can do this — and you don&apos;t have to figure it out alone.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3">
               <Link
                 href="/shop"
-                className="inline-flex items-center justify-center bg-sage text-white font-sans text-sm tracking-widest uppercase px-10 py-4 hover:bg-sage-dark transition-colors duration-300 min-h-[52px]"
+                className="inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wider uppercase px-10 py-4 rounded-full transition-colors duration-300 min-h-[52px]"
+                style={{ backgroundColor: '#F5C430', color: '#2A3E2B' }}
               >
                 Get the Resources
               </Link>
               <Link
                 href="/blog"
-                className="inline-flex items-center justify-center border border-charcoal/30 text-charcoal font-sans text-sm tracking-widest uppercase px-10 py-4 hover:border-sage hover:text-sage transition-all duration-300 min-h-[52px]"
+                className="inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wider uppercase px-10 py-4 rounded-full border-2 text-white transition-all duration-300 min-h-[52px] hover:bg-white/10"
+                style={{ borderColor: 'rgba(255,255,255,0.6)' }}
               >
                 Read the Blog
               </Link>
@@ -76,16 +94,16 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Thin accent bar */}
-        <div className="h-px bg-linen" />
-
         {/* Featured Products */}
         {products.length > 0 && (
-          <section className="py-20 sm:py-28 bg-white">
-            <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <section className="py-20 sm:py-28 bg-white decorative-bg">
+            <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
               <div className="text-center mb-14">
                 <p className="section-label mb-2">the shop</p>
-                <h2 className="font-serif text-3xl text-charcoal">Tools to Make It Easier</h2>
+                <h2 className="text-3xl sm:text-4xl mb-4" style={{ color: '#2A3E2B' }}>
+                  Tools to Make It Easier
+                </h2>
+                <div className="divider" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {products.map((product) => (
@@ -95,7 +113,8 @@ export default async function HomePage() {
               <div className="text-center mt-12">
                 <Link
                   href="/shop"
-                  className="font-sans text-xs tracking-widest uppercase text-stone border-b border-stone/40 pb-0.5 hover:text-sage hover:border-sage transition-colors"
+                  className="font-sans text-sm font-semibold tracking-wider uppercase border-b-2 pb-0.5 transition-colors"
+                  style={{ color: '#4A8C4E', borderColor: '#4A8C4E' }}
                 >
                   View all resources
                 </Link>
@@ -106,11 +125,14 @@ export default async function HomePage() {
 
         {/* Latest Posts */}
         {posts.length > 0 && (
-          <section className="py-20 sm:py-28 bg-cream">
+          <section className="py-20 sm:py-28" style={{ backgroundColor: '#F6FAF4' }}>
             <div className="mx-auto max-w-6xl px-6 lg:px-8">
               <div className="text-center mb-14">
                 <p className="section-label mb-2">from the blog</p>
-                <h2 className="font-serif text-3xl text-charcoal">Real Talk from a Real Mom</h2>
+                <h2 className="text-3xl sm:text-4xl mb-4" style={{ color: '#2A3E2B' }}>
+                  Real Talk from a Real Mom
+                </h2>
+                <div className="divider" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {posts.map((post) => (
@@ -120,7 +142,8 @@ export default async function HomePage() {
               <div className="text-center mt-12">
                 <Link
                   href="/blog"
-                  className="font-sans text-xs tracking-widest uppercase text-stone border-b border-stone/40 pb-0.5 hover:text-sage hover:border-sage transition-colors"
+                  className="font-sans text-sm font-semibold tracking-wider uppercase border-b-2 pb-0.5 transition-colors"
+                  style={{ color: '#4A8C4E', borderColor: '#4A8C4E' }}
                 >
                   Read all posts
                 </Link>
@@ -131,11 +154,14 @@ export default async function HomePage() {
 
         {/* Dani's Picks */}
         {library.length > 0 && (
-          <section className="py-20 sm:py-28 bg-linen">
-            <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <section className="py-20 sm:py-28 decorative-bg" style={{ backgroundColor: '#EDF5E1' }}>
+            <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
               <div className="text-center mb-14">
                 <p className="section-label mb-2">my favorites</p>
-                <h2 className="font-serif text-3xl text-charcoal">Dani&apos;s Picks</h2>
+                <h2 className="text-3xl sm:text-4xl mb-4" style={{ color: '#2A3E2B' }}>
+                  Dani&apos;s Picks
+                </h2>
+                <div className="divider" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {library.map((item) => (
@@ -145,7 +171,8 @@ export default async function HomePage() {
               <div className="text-center mt-12">
                 <Link
                   href="/library"
-                  className="font-sans text-xs tracking-widest uppercase text-stone border-b border-stone/40 pb-0.5 hover:text-sage hover:border-sage transition-colors"
+                  className="font-sans text-sm font-semibold tracking-wider uppercase border-b-2 pb-0.5 transition-colors"
+                  style={{ color: '#4A8C4E', borderColor: '#4A8C4E' }}
                 >
                   View all picks
                 </Link>
@@ -157,51 +184,71 @@ export default async function HomePage() {
         {/* About section */}
         <section className="py-20 sm:py-28 bg-white">
           <div className="mx-auto max-w-5xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="relative aspect-[4/5] max-w-xs mx-auto lg:mx-0 overflow-hidden bg-linen flex items-center justify-center">
-                <svg className="w-20 h-20 text-stone/20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                <span className="absolute bottom-4 font-sans text-xs text-stone/40 tracking-wider uppercase">Photo coming soon</span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Photo — about.jpeg */}
+              <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 overflow-hidden rounded-2xl shadow-[0_8px_40px_rgba(42,62,43,0.15)]">
+                <Image
+                  src="/about.jpeg"
+                  alt="Daniela with her son at their homeschool desk"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 90vw, 40vw"
+                />
               </div>
+
+              {/* Text content */}
               <div>
                 <p className="section-label mb-3">meet daniela</p>
-                <h2 className="font-serif text-3xl sm:text-4xl text-charcoal mt-1 mb-6 leading-snug">
+                <h2
+                  className="text-3xl sm:text-4xl mt-1 mb-5 leading-snug"
+                  style={{ color: '#2A3E2B' }}
+                >
                   Growing With My Kids,<br /> Not Apart from Them
                 </h2>
-                <div className="w-8 h-px bg-blush mb-6" style={{backgroundColor: '#C9A49C'}} />
-                <p className="font-sans text-stone leading-relaxed mb-4">
+                <div className="divider" style={{ margin: '0 0 1.5rem 0' }} />
+                <p className="font-sans leading-relaxed mb-4" style={{ color: '#8A9E8B' }}>
                   Hi! I&apos;m Daniela — a homeschool mom who stumbled into this journey
                   and never looked back. Homeschooling isn&apos;t about having all the
                   answers. It&apos;s about being present, being curious, and growing
                   right alongside your kids.
                 </p>
-                <p className="font-sans text-stone leading-relaxed mb-8">
+                <p className="font-sans leading-relaxed mb-8" style={{ color: '#8A9E8B' }}>
                   If you&apos;re wondering whether you can really do this — you can.
                   Follow along on Instagram{' '}
                   <a
                     href="https://www.instagram.com/thedanicerrato"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-charcoal underline underline-offset-2 hover:text-sage transition-colors"
+                    className="underline underline-offset-2 transition-colors"
+                    style={{ color: '#4A8C4E' }}
                   >
                     @thedanicerrato
                   </a>{' '}
                   for the real, unfiltered side of our homeschool life.
                 </p>
-                <Link
-                  href="/about"
-                  className="font-sans text-xs tracking-widest uppercase text-stone border-b border-stone/40 pb-0.5 hover:text-sage hover:border-sage transition-colors"
-                >
-                  Learn more about me
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href="/about"
+                    className="inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-full text-white transition-colors duration-300 min-h-[52px]"
+                    style={{ backgroundColor: '#4A8C4E' }}
+                  >
+                    Learn More About Me
+                  </Link>
+                  <Link
+                    href="/shop"
+                    className="inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-full border-2 transition-all duration-300 min-h-[52px]"
+                    style={{ borderColor: '#4A8C4E', color: '#4A8C4E' }}
+                  >
+                    Browse Resources
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Email signup */}
-        <section className="py-20 sm:py-28 bg-cream">
+        <section className="py-20 sm:py-28" style={{ backgroundColor: '#2A3E2B' }}>
           <div className="mx-auto max-w-xl px-6">
             <EmailSignup />
           </div>

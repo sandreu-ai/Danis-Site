@@ -1,26 +1,26 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, DM_Sans, Cormorant_Garamond } from 'next/font/google'
+import { Fredoka, Nunito, Caveat } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
-const playfair = Playfair_Display({
+const fredoka = Fredoka({
   subsets: ['latin'],
-  variable: '--font-playfair',
+  variable: '--font-fredoka',
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
 })
 
-const dmSans = DM_Sans({
+const nunito = Nunito({
   subsets: ['latin'],
-  variable: '--font-dm-sans',
+  variable: '--font-nunito',
   weight: ['300', '400', '500', '600'],
   display: 'swap',
 })
 
-const cormorant = Cormorant_Garamond({
+const caveat = Caveat({
   subsets: ['latin'],
-  variable: '--font-cormorant',
-  style: ['italic'],
+  variable: '--font-caveat',
   weight: ['400', '500', '600'],
   display: 'swap',
 })
@@ -64,8 +64,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable} ${cormorant.variable}`}>
-      <body className="flex flex-col min-h-screen">
+    <html lang="en" className={`${fredoka.variable} ${nunito.variable} ${caveat.variable}`}>
+      <body className="flex flex-col min-h-screen bg-cream font-sans antialiased">
         {children}
         <Analytics />
         <SpeedInsights />

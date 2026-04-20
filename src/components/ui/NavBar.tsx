@@ -14,13 +14,22 @@ export function NavBar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-white/97 backdrop-blur-sm border-b border-linen">
+    <header
+      className="sticky top-0 z-50 backdrop-blur-sm border-b"
+      style={{ backgroundColor: 'rgba(255,255,255,0.97)', borderColor: '#EDF5E1' }}
+    >
       <nav className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-18">
           {/* Logo */}
           <Link
             href="/"
-            className="font-serif text-lg text-charcoal hover:text-sage transition-colors tracking-wide"
+            className="transition-colors"
+            style={{
+              fontFamily: 'var(--font-fredoka)',
+              fontSize: '1.25rem',
+              fontWeight: 600,
+              color: '#2A3E2B',
+            }}
           >
             Daniela Cerrato
           </Link>
@@ -31,7 +40,10 @@ export function NavBar() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-sans text-xs font-medium tracking-widest uppercase text-stone hover:text-sage transition-colors"
+                  className="font-sans text-sm tracking-wider uppercase transition-colors"
+                  style={{ color: '#8A9E8B' }}
+                  onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#4A8C4E' }}
+                  onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#8A9E8B' }}
                 >
                   {link.label}
                 </Link>
@@ -42,7 +54,8 @@ export function NavBar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 text-charcoal hover:text-sage transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="md:hidden p-2 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+            style={{ color: '#2A3E2B' }}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
@@ -60,14 +73,15 @@ export function NavBar() {
 
         {/* Mobile drawer */}
         {open && (
-          <div className="md:hidden border-t border-linen py-6">
+          <div className="md:hidden border-t py-6" style={{ borderColor: '#EDF5E1' }}>
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block px-2 py-3 font-sans text-xs tracking-widest uppercase text-stone hover:text-sage transition-colors min-h-[44px] flex items-center"
+                    className="block px-2 py-3 font-sans text-sm tracking-wider uppercase transition-colors min-h-[44px] flex items-center"
+                    style={{ color: '#8A9E8B' }}
                   >
                     {link.label}
                   </Link>
