@@ -26,41 +26,23 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+  const { data: { session } } = await supabase.auth.getSession()
 
-  const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
-  const isLoginPage = request.nextUrl.pathname === '/admin/login'
-
-  if (isAdminRoute && !isLoginPage) {
-    if (!session) {
-      return NextResponse.redirect(new URL('/admin/login', request.url))
-    }
-
-    const adminEmails = (process.env.ADMIN_EMAILS ?? '')
-      .split(',')
-      .map((e) => e.trim().toLowerCase())
-
-    const userEmail = session.user.email?.toLowerCase() ?? ''
-
-    if (!adminEmails.includes(userEmail)) {
-      return NextResponse.redirect(new URL('/admin/login', request.url))
-    }
+  if (!session) {
+    return NextResponse.redirect(new URL('/admin/login', request.url))
   }
 
-  if (isLoginPage && session) {
-    const adminEmails = (process.env.ADMIN_EMAILS ?? '')
-      .split(',')
-      .map((e) => e.trim().toLowerCase())
-    if (adminEmails.includes(session.user.email?.toLowerCase() ?? '')) {
-      return NextResponse.redirect(new URL('/admin', request.url))
-    }
+  const adminEmails = (process.env.ADMIN_EMAILS ?? '')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+
+  if (!adminEmails.includes(session.user.email?.toLowerCase() ?? '')) {
+    return NextResponse.redirect(new URL('/admin/login', request.url))
   }
 
   return supabaseResponse
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/((?!login).*)'],
 }
