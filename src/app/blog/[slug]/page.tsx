@@ -16,7 +16,8 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  const supabase = await createClient()
+  const { createAdminClient } = await import('@/lib/supabase/admin')
+  const supabase = createAdminClient()
   const { data } = await supabase
     .from('posts')
     .select('slug')
