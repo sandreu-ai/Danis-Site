@@ -30,7 +30,7 @@ export default async function ShopPage() {
             </h1>
             <p className="font-sans text-charcoal-light text-lg max-w-xl">
               Printables, curriculum guides, and planning tools — designed for
-              Catholic homeschool families.
+              real homeschool families.
             </p>
           </div>
         </div>

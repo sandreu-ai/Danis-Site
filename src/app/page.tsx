@@ -55,7 +55,7 @@ export default async function HomePage() {
             alt="Daniela and her boys at a creek"
             fill
             priority
-            className="object-cover object-top"
+            className="object-cover object-center"
             sizes="100vw"
           />
           {/* Gradient overlay: dark at bottom, fading to transparent at top */}

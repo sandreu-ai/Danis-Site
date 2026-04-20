@@ -39,7 +39,7 @@ export default function AboutPage() {
                 style={{ borderColor: '#F5C430', boxShadow: '0 8px 40px rgba(42,62,43,0.15)' }}
               >
                 <Image
-                  src="/daniela.jpg"
+                  src="/Daniela.jpg"
                   alt="Daniela Cerrato headshot"
                   fill
                   className="object-cover"
