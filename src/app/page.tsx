@@ -94,6 +94,13 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Email signup */}
+        <section className="py-16 sm:py-20" style={{ backgroundColor: '#2A3E2B' }}>
+          <div className="mx-auto max-w-xl px-6">
+            <EmailSignup />
+          </div>
+        </section>
+
         {/* Featured Products */}
         {products.length > 0 && (
           <section className="py-20 sm:py-28 bg-white decorative-bg">
@@ -247,12 +254,6 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Email signup */}
-        <section className="py-20 sm:py-28" style={{ backgroundColor: '#2A3E2B' }}>
-          <div className="mx-auto max-w-xl px-6">
-            <EmailSignup />
-          </div>
-        </section>
 
       </main>
       <Footer />
