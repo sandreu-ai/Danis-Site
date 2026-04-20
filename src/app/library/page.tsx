@@ -80,8 +80,8 @@ export default function LibraryPage(props: PageProps) {
               Dani&apos;s Picks
             </h1>
             <p className="font-sans text-charcoal-light text-lg max-w-xl">
-              Products I personally use and love in our homeschool — curated with
-              Catholic families in mind.
+              Products I personally use and love in our homeschool — tried, tested,
+              and mom-approved.
             </p>
           </div>
         </div>
