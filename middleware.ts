@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
   // Never protect the login page itself
-  if (request.nextUrl.pathname === '/admin/login') {
+  if (request.nextUrl.pathname.startsWith('/admin/login')) {
     return NextResponse.next()
   }
 
