@@ -180,12 +180,12 @@ export default async function HomePage() {
                   If you&apos;re wondering whether you can really do this — you can.
                   Follow along on Instagram{' '}
                   <a
-                    href="https://www.instagram.com/learnlivelovejourney"
+                    href="https://www.instagram.com/thedanicerrato"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-charcoal underline underline-offset-2 hover:text-sage transition-colors"
                   >
-                    @learnlivelovejourney
+                    @thedanicerrato
                   </a>{' '}
                   for the real, unfiltered side of our homeschool life.
                 </p>

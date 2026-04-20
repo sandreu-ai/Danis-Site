@@ -78,9 +78,9 @@ export function PurchaseConfirmation({
               <br />
               <Link
                 style={linkStyle}
-                href="https://www.instagram.com/learnlivelovejourney"
+                href="https://www.instagram.com/thedanicerrato"
               >
-                @learnlivelovejourney
+                @thedanicerrato
               </Link>
             </Text>
           </Section>
