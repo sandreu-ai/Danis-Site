@@ -3,9 +3,7 @@ export const runtime = 'nodejs'
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { stripe } from '@/lib/stripe'
-import { createAdminClient } from '@/lib/supabase/admin'
-import { generateSignedDownloadUrl } from '@/lib/utils'
-import { sendPurchaseConfirmation } from '@/lib/resend'
+import { fulfillCheckoutSession } from '@/lib/checkout-fulfillment'
 
 export async function POST(request: NextRequest) {
   const body = await request.text()
@@ -34,47 +32,12 @@ export async function POST(request: NextRequest) {
 
   const session = event.data.object as Stripe.Checkout.Session
 
-  const email = session.customer_details?.email
-  const productId = session.metadata?.productId
-
-  if (!email || !productId) {
-    return NextResponse.json({ error: 'Missing email or productId' }, { status: 400 })
-  }
-
-  const supabase = createAdminClient()
-
-  const { data: product, error: productError } = await supabase
-    .from('products')
-    .select('*')
-    .eq('id', productId)
-    .single()
-
-  if (productError || !product) {
-    return NextResponse.json({ error: 'Product not found' }, { status: 404 })
-  }
-
-  const { error: purchaseError } = await supabase.from('purchases').insert({
-    email,
-    product_id: productId,
-    stripe_session_id: session.id,
-    stripe_payment_intent_id: session.payment_intent as string | null,
-    amount: session.amount_total ?? product.price,
-  })
-
-  if (purchaseError && purchaseError.code !== '23505') {
-    return NextResponse.json({ error: purchaseError.message }, { status: 500 })
-  }
-
   try {
-    const downloadUrl = await generateSignedDownloadUrl(product.file_url, 86400)
-    await sendPurchaseConfirmation({
-      to: email,
-      productName: product.title,
-      downloadUrl,
-    })
-  } catch (err) {
-    // Email failure should not fail the webhook response
-    console.error('Failed to send purchase email:', err)
+    await fulfillCheckoutSession(session)
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Failed to fulfill checkout session'
+    console.error('Stripe webhook fulfillment failed:', message)
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 
   return NextResponse.json({ received: true })

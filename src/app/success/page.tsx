@@ -4,6 +4,7 @@ import { NavBar } from '@/components/ui/NavBar'
 import { Footer } from '@/components/ui/Footer'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { generateSignedDownloadUrl } from '@/lib/utils'
+import { fulfillCheckoutSessionById } from '@/lib/checkout-fulfillment'
 
 export const metadata: Metadata = {
   title: 'Purchase Successful',
@@ -42,11 +43,23 @@ export default async function SuccessPage({ searchParams }: PageProps) {
 
   const supabase = createAdminClient()
 
-  const { data: purchase } = await supabase
+  let { data: purchase } = await supabase
     .from('purchases')
     .select('*, product:products(*)')
     .eq('stripe_session_id', session_id)
     .single()
+
+  if (!purchase) {
+    try {
+      const fulfillment = await fulfillCheckoutSessionById(session_id)
+      purchase = {
+        ...fulfillment.purchase,
+        product: fulfillment.product,
+      }
+    } catch (error) {
+      console.error('Success page fulfillment recovery failed:', error)
+    }
+  }
 
   if (!purchase || !purchase.product) {
     return (
