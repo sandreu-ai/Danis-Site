@@ -6,9 +6,12 @@ import { Footer } from '@/components/ui/Footer'
 import { EmailSignup } from '@/components/ui/EmailSignup'
 
 export const metadata: Metadata = {
-  title: 'About Daniela',
+  title: 'About Daniela Cerrato — Homeschool Mom Encouragement',
   description:
-    'Meet Daniela — a homeschool mom who gets it. Real life, real kids, real encouragement. You are not alone in this journey.',
+    'Meet Daniela Cerrato, a homeschool mom sharing real-life encouragement, practical resources, and faith-grounded support for families learning at home.',
+  alternates: {
+    canonical: '/about',
+  },
 }
 
 export default function AboutPage() {

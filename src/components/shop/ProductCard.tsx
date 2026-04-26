@@ -1,5 +1,8 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { formatPrice } from '@/lib/utils'
 import type { Product } from '@/types'
 
@@ -9,7 +12,11 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="group bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col">
+    <motion.div
+      whileHover={{ y: -6, boxShadow: '0 8px 40px rgba(42,62,43,0.15)' }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+      className="group bg-white rounded-card shadow-card flex flex-col"
+    >
       <Link href={`/shop/${product.slug}`}>
         {product.cover_image_url ? (
           <div className="relative aspect-[4/3] overflow-hidden rounded-t-card">
@@ -29,7 +36,10 @@ export function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
         <div className="p-5 flex-1 flex flex-col">
-          <h3 className="font-serif text-base font-bold text-charcoal mb-2 group-hover:text-sage transition-colors line-clamp-2">
+          <h3
+            className="text-base font-bold mb-2 line-clamp-2 group-hover:text-sage transition-colors"
+            style={{ fontFamily: 'var(--font-fredoka)', color: '#2A3E2B' }}
+          >
             {product.title}
           </h3>
           <p className="font-sans text-lg font-bold text-sage mt-auto">
@@ -38,13 +48,15 @@ export function ProductCard({ product }: ProductCardProps) {
         </div>
       </Link>
       <div className="px-5 pb-5">
-        <Link
-          href={`/shop/${product.slug}`}
-          className="block w-full text-center bg-sage text-white font-sans font-semibold rounded-lg py-2.5 text-sm hover:bg-sage-dark transition-colors min-h-[44px] flex items-center justify-center"
-        >
-          View Details
-        </Link>
+        <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
+          <Link
+            href={`/shop/${product.slug}`}
+            className="block w-full text-center bg-sage text-white font-sans font-semibold rounded-lg py-2.5 text-sm hover:bg-sage-dark transition-colors min-h-[44px] flex items-center justify-center"
+          >
+            View Details
+          </Link>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   )
 }

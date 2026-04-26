@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/Badge'
 import type { RecommendedProduct } from '@/types'
 
@@ -8,7 +11,11 @@ interface LibraryCardProps {
 
 export function LibraryCard({ item }: LibraryCardProps) {
   return (
-    <div className="bg-white rounded-card shadow-card hover:shadow-card-hover transition-all duration-300 flex flex-col">
+    <motion.div
+      whileHover={{ y: -6, boxShadow: '0 8px 40px rgba(42,62,43,0.15)' }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+      className="bg-white rounded-card shadow-card flex flex-col"
+    >
       {item.image_url ? (
         <div className="relative aspect-[4/3] overflow-hidden rounded-t-card">
           <Image
@@ -29,7 +36,10 @@ export function LibraryCard({ item }: LibraryCardProps) {
 
       <div className="p-5 flex-1 flex flex-col">
         <div className="flex items-start gap-2 mb-2">
-          <h3 className="font-serif text-base font-bold text-charcoal flex-1 line-clamp-2">
+          <h3
+            className="text-base font-bold flex-1 line-clamp-2"
+            style={{ fontFamily: 'var(--font-fredoka)', color: '#2A3E2B' }}
+          >
             {item.title}
           </h3>
           {item.category && (
@@ -40,20 +50,23 @@ export function LibraryCard({ item }: LibraryCardProps) {
         </div>
 
         {item.description && (
-          <p className="font-sans text-sm text-charcoal-light leading-relaxed line-clamp-3 mb-4">
+          <p className="font-sans text-sm leading-relaxed line-clamp-3 mb-4" style={{ color: '#8A9E8B' }}>
             {item.description}
           </p>
         )}
 
-        <a
+        <motion.a
           href={item.affiliate_url}
           target="_blank"
           rel="noopener noreferrer sponsored"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
           className="mt-auto block w-full text-center border-2 border-sage text-sage font-sans font-semibold rounded-lg py-2.5 text-sm hover:bg-sage hover:text-white transition-all min-h-[44px] flex items-center justify-center"
         >
           Check it out →
-        </a>
+        </motion.a>
       </div>
-    </div>
+    </motion.div>
   )
 }

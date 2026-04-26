@@ -22,6 +22,10 @@ const config: Config = {
         cream: '#F6FAF4',
         linen: '#EDF5E1',
         stone: '#8A9E8B',
+        charcoal: {
+          DEFAULT: '#2A3E2B',
+          light: '#8A9E8B',
+        },
       },
       fontFamily: {
         sans: ['var(--font-nunito)', 'system-ui', 'sans-serif'],
@@ -40,6 +44,9 @@ const config: Config = {
       },
       borderRadius: {
         card: '16px',
+      },
+      height: {
+        18: '4.5rem',
       },
     },
   },

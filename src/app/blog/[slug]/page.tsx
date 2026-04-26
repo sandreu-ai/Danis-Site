@@ -6,6 +6,7 @@ import { NavBar } from '@/components/ui/NavBar'
 import { Footer } from '@/components/ui/Footer'
 import { PostCard } from '@/components/blog/PostCard'
 import { Badge } from '@/components/ui/Badge'
+import { QuizCalloutCard } from '@/components/ui/QuizCalloutCard'
 import { createClient } from '@/lib/supabase/server'
 import { formatDate } from '@/lib/utils'
 
@@ -45,6 +46,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.title,
     description,
+    alternates: {
+      canonical: `/blog/${slug}`,
+    },
     openGraph: {
       title: post.title,
       description,
@@ -76,10 +80,34 @@ export default async function BlogPostPage({ params }: PageProps) {
     .order('created_at', { ascending: false })
     .limit(3)
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    datePublished: post.created_at,
+    author: {
+      '@type': 'Person',
+      name: 'Daniela Cerrato',
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Daniela Cerrato',
+    },
+    image: post.cover_image_url ? [post.cover_image_url] : undefined,
+    description: post.content_html
+      ? post.content_html.replace(/<[^>]*>/g, '').slice(0, 160)
+      : undefined,
+    mainEntityOfPage: `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://danielacerrato.com'}/blog/${slug}`,
+  }
+
   return (
     <>
       <NavBar />
       <main className="flex-1">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
         <article className="mx-auto max-w-prose px-4 sm:px-6 py-12 sm:py-16">
           {/* Meta */}
           <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -116,6 +144,11 @@ export default async function BlogPostPage({ params }: PageProps) {
             />
           )}
         </article>
+
+        {/* Curriculum Compass contextual callout */}
+        <div className="mx-auto max-w-prose px-4 sm:px-6 py-8">
+          <QuizCalloutCard />
+        </div>
 
         {/* More posts */}
         {morePosts && morePosts.length > 0 && (
