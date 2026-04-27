@@ -87,6 +87,26 @@ export function OurSitesDropdown() {
                   </p>
                 </div>
               </a>
+              <a
+                href="https://statehomeschoollaws.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="flex items-start gap-3 p-3 rounded-xl transition-colors duration-150"
+                style={{ color: '#2A3E2B' }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = '#F6FAF4')}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.backgroundColor = 'transparent')}
+              >
+                <span className="text-2xl mt-0.5">📋</span>
+                <div>
+                  <p className="font-heading text-sm" style={{ color: '#2A3E2B', fontFamily: 'var(--font-fredoka)' }}>
+                    State Homeschool Laws
+                  </p>
+                  <p className="font-sans text-xs mt-0.5" style={{ color: '#8A9E8B' }}>
+                    Plain-English guides · All 50 states
+                  </p>
+                </div>
+              </a>
             </div>
           </motion.div>
         )}
