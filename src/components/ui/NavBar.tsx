@@ -118,6 +118,15 @@ export function NavBar() {
                   >
                     🧭 The Curriculum Compass
                   </a>
+                  <a
+                    href="https://statehomeschoollaws.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-2 py-3 font-sans text-sm min-h-[48px] transition-colors"
+                    style={{ color: '#8A9E8B' }}
+                  >
+                    📋 State Homeschool Laws
+                  </a>
                 </li>
               </ul>
             </motion.div>
