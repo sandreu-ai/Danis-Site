@@ -1,7 +1,17 @@
 import { Resend } from 'resend'
 import { PurchaseConfirmation } from '../../emails/purchase-confirmation'
 
-export const resend = new Resend(process.env.RESEND_API_KEY!)
+let resendClient: Resend | null = null
+
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY
+  if (!apiKey) {
+    throw new Error('RESEND_API_KEY is not set')
+  }
+
+  resendClient ??= new Resend(apiKey)
+  return resendClient
+}
 
 export async function sendPurchaseConfirmation({
   to,
@@ -12,6 +22,7 @@ export async function sendPurchaseConfirmation({
   productName: string
   downloadUrl: string
 }) {
+  const resend = getResendClient()
   const { data, error } = await resend.emails.send({
     from: process.env.RESEND_FROM_EMAIL ?? 'hello@danielacerrato.com',
     to,
@@ -27,6 +38,7 @@ export async function subscribeToAudience(email: string) {
   const audienceId = process.env.RESEND_AUDIENCE_ID
   if (!audienceId) throw new Error('RESEND_AUDIENCE_ID is not set')
 
+  const resend = getResendClient()
   const { data, error } = await resend.contacts.create({
     audienceId,
     email,
