@@ -51,14 +51,14 @@ export default async function HomePage() {
       <NavBar />
       <main className="flex-1">
 
-        {/* Hero — full screen with hero.jpeg */}
+        {/* Hero — full screen with homeschool bookshelf portrait */}
         <section className="relative min-h-screen flex items-end">
           <Image
-            src="/hero.jpeg"
-            alt="Daniela and her boys at a creek"
+            src="/hero-bookshelf.jpeg"
+            alt="Daniela smiling in her homeschool room beside shelves of books, games, and art supplies"
             fill
             priority
-            className="object-cover object-center"
+            className="object-cover object-[center_42%]"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
