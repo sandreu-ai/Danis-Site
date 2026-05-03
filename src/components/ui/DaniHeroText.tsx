@@ -25,7 +25,7 @@ export function DaniHeroText() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="relative z-10 w-full pb-16 sm:pb-24 px-6 lg:px-8 max-w-4xl mx-auto text-white"
+      className="relative z-10 w-full pb-16 sm:pb-24 px-6 lg:px-8 max-w-7xl mx-auto text-white"
     >
       <motion.p
         variants={slideLeft}
@@ -37,7 +37,7 @@ export function DaniHeroText() {
       <motion.h1
         variants={fadeUp}
         style={{ fontFamily: 'var(--font-fredoka)', fontWeight: 600 }}
-        className="text-4xl sm:text-5xl lg:text-7xl leading-tight mb-6"
+        className="max-w-2xl text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6"
       >
         Homeschooling Is Simpler Than You Think
       </motion.h1>
