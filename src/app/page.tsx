@@ -54,11 +54,11 @@ export default async function HomePage() {
         {/* Hero — full screen with homeschool bookshelf portrait */}
         <section className="relative min-h-screen flex items-end">
           <Image
-            src="/hero-bookshelf.jpeg"
+            src="/hero-bookshelf-wide.jpeg"
             alt="Daniela smiling in her homeschool room beside shelves of books, games, and art supplies"
             fill
             priority
-            className="object-cover object-[center_42%]"
+            className="object-cover object-[78%_42%]"
             sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
