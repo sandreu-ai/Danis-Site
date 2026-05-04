@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { Suspense } from 'react'
 import { NavBar } from '@/components/ui/NavBar'
 import { Footer } from '@/components/ui/Footer'
 import { LibraryCard } from '@/components/library/LibraryCard'
 import { CategoryFilter } from '@/components/blog/CategoryFilter'
+import { unlockDaniPicks } from '@/actions/library-access'
 import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
@@ -69,7 +71,46 @@ async function LibraryContent({ searchParams }: PageProps) {
   )
 }
 
-export default function LibraryPage(props: PageProps) {
+function LibraryEmailGate() {
+  return (
+    <div className="mx-auto max-w-2xl rounded-card bg-white p-8 sm:p-10 text-center shadow-card">
+      <p className="section-label mb-3">free resource list</p>
+      <h2
+        className="text-3xl sm:text-4xl mb-4"
+        style={{ fontFamily: 'var(--font-fredoka)', fontWeight: 600, color: '#2A3E2B' }}
+      >
+        Get Dani&apos;s Picks in Your Inbox
+      </h2>
+      <p className="font-sans text-charcoal-light leading-relaxed mb-7">
+        Drop your email and I&apos;ll unlock the full list of homeschool books,
+        supplies, curriculum finds, and mom-approved favorites I actually use.
+      </p>
+      <form action={unlockDaniPicks} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          className="flex-1 rounded-full border border-linen bg-cream px-5 py-3 font-sans text-sm text-charcoal outline-none transition-colors min-h-[44px] focus:border-sage focus:bg-white"
+        />
+        <button
+          type="submit"
+          className="shrink-0 rounded-full bg-sage px-6 py-3 font-sans text-xs font-semibold uppercase tracking-wider text-white transition-colors min-h-[44px] hover:bg-sage-dark"
+        >
+          Get the list
+        </button>
+      </form>
+      <p className="mt-4 font-sans text-xs text-charcoal-light">
+        No spam — just Daniela&apos;s real-life favorites and occasional updates.
+      </p>
+    </div>
+  )
+}
+
+export default async function LibraryPage(props: PageProps) {
+  const cookieStore = await cookies()
+  const hasEmailAccess = cookieStore.get('dani_picks_email_access')?.value === '1'
+
   return (
     <>
       <NavBar />
@@ -87,9 +128,13 @@ export default function LibraryPage(props: PageProps) {
         </div>
 
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-          <Suspense fallback={<div className="font-sans text-charcoal-light">Loading…</div>}>
-            <LibraryContent searchParams={props.searchParams} />
-          </Suspense>
+          {hasEmailAccess ? (
+            <Suspense fallback={<div className="font-sans text-charcoal-light">Loading…</div>}>
+              <LibraryContent searchParams={props.searchParams} />
+            </Suspense>
+          ) : (
+            <LibraryEmailGate />
+          )}
         </div>
       </main>
       <Footer />
