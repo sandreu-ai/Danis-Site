@@ -9,12 +9,14 @@ export default async function AdminDashboard() {
     { count: postCount },
     { count: productCount },
     { count: libraryCount },
+    { count: subscriberCount },
     { data: recentPosts },
     { data: recentProducts },
   ] = await Promise.all([
     supabase.from('posts').select('*', { count: 'exact', head: true }),
     supabase.from('products').select('*', { count: 'exact', head: true }),
     supabase.from('recommended_products').select('*', { count: 'exact', head: true }),
+    supabase.from('subscribers').select('*', { count: 'exact', head: true }).eq('active', true),
     supabase.from('posts').select('id, title, published, updated_at').order('updated_at', { ascending: false }).limit(5),
     supabase.from('products').select('id, title, updated_at').order('updated_at', { ascending: false }).limit(5),
   ])
@@ -23,12 +25,14 @@ export default async function AdminDashboard() {
     { label: 'Blog Posts', value: postCount ?? 0, href: '/admin/posts', color: 'bg-sage/10 text-sage' },
     { label: 'Products', value: productCount ?? 0, href: '/admin/products', color: 'bg-rose/10 text-rose-dark' },
     { label: 'Library Items', value: libraryCount ?? 0, href: '/admin/library', color: 'bg-linen text-charcoal' },
+    { label: 'Email Subscribers', value: subscriberCount ?? 0, href: '/admin/subscribers', color: 'bg-blue-50 text-blue-700' },
   ]
 
   const quickActions = [
     { href: '/admin/posts/new', label: '+ New Post' },
     { href: '/admin/products/new', label: '+ New Product' },
     { href: '/admin/library/new', label: '+ New Pick' },
+    { href: '/admin/subscribers', label: 'View Email List' },
   ]
 
   return (
@@ -39,7 +43,7 @@ export default async function AdminDashboard() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {stats.map((stat) => (
           <Link
             key={stat.label}

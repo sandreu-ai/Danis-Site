@@ -10,6 +10,7 @@ const navItems = [
   { href: '/admin/posts', label: 'Blog Posts', icon: '✏️' },
   { href: '/admin/products', label: 'Products', icon: '📦' },
   { href: '/admin/library', label: "Dani's Picks", icon: '🌿' },
+  { href: '/admin/subscribers', label: 'Email List', icon: '✉️' },
 ]
 
 export function AdminNav() {
