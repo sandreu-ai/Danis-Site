@@ -33,7 +33,11 @@ const organizationJsonLd = {
   name: 'Daniela Cerrato',
   url: appUrl,
   image: `${appUrl}/Daniela.jpg`,
-  sameAs: ['https://www.instagram.com/thedanicerrato'],
+  sameAs: [
+    'https://www.instagram.com/thedanicerrato',
+    'https://www.facebook.com/thedanicerrato',
+    'https://www.tiktok.com/@thedanicerrato',
+  ],
   description:
     'Homeschool mom sharing resources, encouragement, and practical help for families learning at home.',
 }
