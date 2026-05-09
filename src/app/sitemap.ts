@@ -4,7 +4,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://danielacerrato.com'
+  const appUrl = 'https://www.danielacerrato.com'
   const supabase = createAdminClient()
 
   const [{ data: posts }, { data: products }] = await Promise.all([

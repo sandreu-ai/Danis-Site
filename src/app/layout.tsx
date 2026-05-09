@@ -25,7 +25,7 @@ const caveat = Caveat({
   display: 'swap',
 })
 
-const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://danielacerrato.com'
+const appUrl = 'https://www.danielacerrato.com'
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
