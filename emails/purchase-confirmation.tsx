@@ -71,17 +71,21 @@ export function PurchaseConfirmation({
               resource blesses your family!
             </Text>
 
-            <Text style={signature}>
-              With love & grace,
-              <br />
-              <strong>Daniela Cerrato</strong>
-              <br />
+            <Text style={paragraph}>
+              For updates and the real, everyday side of our homeschool life,
+              follow along on Instagram:{' '}
               <Link
                 style={linkStyle}
                 href="https://www.instagram.com/thedanicerrato"
               >
                 @thedanicerrato
               </Link>
+            </Text>
+
+            <Text style={signature}>
+              With love & grace,
+              <br />
+              <strong>Daniela Cerrato</strong>
             </Text>
           </Section>
 

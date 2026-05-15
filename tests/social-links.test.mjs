@@ -34,3 +34,13 @@ test('about page points visitors to Daniela social profiles', () => {
     assert.match(about, new RegExp(url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), `About page should link to ${url}`)
   }
 })
+
+test('purchase confirmation keeps the post-purchase social CTA Instagram-only', () => {
+  const email = read('emails/purchase-confirmation.tsx')
+
+  assert.match(email, /follow along on Instagram/i, 'Purchase email should point buyers to Instagram')
+  assert.match(email, new RegExp(socialUrls.instagram.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'Purchase email should include Daniela Instagram')
+  assert.doesNotMatch(email, new RegExp(socialUrls.facebook.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'Purchase email should not include Facebook')
+  assert.doesNotMatch(email, new RegExp(socialUrls.tiktok.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), 'Purchase email should not include TikTok')
+  assert.doesNotMatch(email, /threads\.net|Threads/i, 'Purchase email should not include Threads')
+})
