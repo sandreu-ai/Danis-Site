@@ -28,10 +28,10 @@ export function EmailSignup() {
 
       if (data.status === 'already_subscribed') {
         setStatus('success')
-        setMessage("You're already on the list — so glad you're here!")
+        setMessage("You're already on the list — so glad you're here.")
       } else {
         setStatus('success')
-        setMessage("You're in! Can't wait to show up in your inbox.")
+        setMessage("You're in. I'll send the useful things, not inbox noise.")
         setEmail('')
       }
     } catch {
@@ -41,53 +41,46 @@ export function EmailSignup() {
   }
 
   return (
-    <div className="text-center">
-      <p className="section-label mb-3" style={{ color: 'rgba(255,255,255,0.9)' }}>
-        join the community
-      </p>
-      <h2
-        className="text-3xl sm:text-4xl mb-4 text-white"
-        style={{ fontFamily: 'var(--font-fredoka)', fontWeight: 600 }}
-      >
-        We&apos;re All in This Together
-      </h2>
-      <div className="divider" />
-      <p className="font-sans text-sm mt-5 mb-8 max-w-sm mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.75)' }}>
-        A community of real moms, figuring it out one day at a time. Get honest
-        tips, simple resources, and a reminder that you&apos;re never doing this alone.
-      </p>
+    <div className="editorial-card grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
+      <div>
+        <p className="section-label mb-6">The letter</p>
+        <h2 className="dani-display text-5xl sm:text-6xl">
+          Notes for the <em>middle</em> of the week.
+        </h2>
+      </div>
 
-      {status === 'success' ? (
-        <p className="font-sans font-semibold" style={{ color: '#F5C430' }}>{message}</p>
-      ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@email.com"
-            required
-            className="flex-1 px-4 py-3 font-sans text-sm rounded-full focus:outline-none transition-colors min-h-[44px]"
-            style={{
-              backgroundColor: 'rgba(255,255,255,0.1)',
-              border: '1px solid rgba(255,255,255,0.4)',
-              color: 'white',
-            }}
-          />
-          <button
-            type="submit"
-            disabled={status === 'loading'}
-            className="shrink-0 font-sans text-xs font-semibold tracking-wider uppercase px-6 py-3 rounded-full transition-colors disabled:opacity-60 min-h-[44px]"
-            style={{ backgroundColor: '#F5C430', color: '#2A3E2B' }}
-          >
-            {status === 'loading' ? '...' : 'Subscribe'}
-          </button>
-        </form>
-      )}
+      <div className="flex flex-col justify-center">
+        <p className="font-sans text-sm leading-7 text-[color:var(--dani-cocoa)]">
+          Simple homeschool rhythms, favorite finds, and honest encouragement for the days
+          that do not look like a Pinterest board.
+        </p>
 
-      {status === 'error' && (
-        <p className="mt-3 font-sans text-xs text-red-300">{message}</p>
-      )}
+        {status === 'success' ? (
+          <p className="mt-6 font-sans text-sm font-semibold text-[color:var(--dani-blush-deep)]">{message}</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              required
+              className="min-h-[48px] flex-1 border border-[color:var(--dani-rule)] bg-[color:var(--dani-paper)] px-4 py-3 font-sans text-sm text-[color:var(--dani-espresso)] outline-none transition-colors placeholder:text-[color:var(--dani-cocoa)] focus:border-[color:var(--dani-blush-deep)]"
+            />
+            <button
+              type="submit"
+              disabled={status === 'loading'}
+              className="editorial-button shrink-0 disabled:opacity-60"
+            >
+              {status === 'loading' ? 'Sending' : 'Subscribe'}
+            </button>
+          </form>
+        )}
+
+        {status === 'error' && (
+          <p className="mt-3 font-sans text-xs text-[color:var(--dani-blush-deep)]">{message}</p>
+        )}
+      </div>
     </div>
   )
 }

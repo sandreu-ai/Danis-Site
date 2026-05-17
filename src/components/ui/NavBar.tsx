@@ -6,8 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { OurSitesDropdown } from './OurSitesDropdown'
 
 const navLinks = [
-  { href: '/blog', label: 'Blog' },
-  { href: '/shop', label: 'Shop' },
+  { href: '/blog', label: 'Journal' },
+  { href: '/shop', label: 'Resources' },
   { href: '/library', label: "Dani's Picks" },
   { href: '/about', label: 'About' },
 ]
@@ -20,35 +20,26 @@ export function NavBar() {
       initial={{ y: -64, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 260, damping: 28 }}
-      className="sticky top-0 z-50 backdrop-blur-sm border-b"
-      style={{ backgroundColor: 'rgba(255,255,255,0.97)', borderColor: '#EDF5E1' }}
+      className="sticky top-0 z-50 border-b backdrop-blur-md"
+      style={{ backgroundColor: 'rgba(245,237,227,0.94)', borderColor: 'rgba(226,211,194,0.9)' }}
     >
       <nav className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-[72px]">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="transition-colors"
-            style={{
-              fontFamily: 'var(--font-fredoka)',
-              fontSize: '1.25rem',
-              fontWeight: 600,
-              color: '#2A3E2B',
-            }}
-          >
-            Daniela Cerrato
+        <div className="flex h-16 items-center justify-between sm:h-[72px]">
+          <Link href="/" className="group flex items-center gap-3 transition-colors">
+            <span className="flex h-9 w-9 items-center justify-center border border-[color:var(--dani-espresso)] font-display text-xl leading-none text-[color:var(--dani-espresso)]">
+              dc
+            </span>
+            <span className="font-display text-2xl leading-none tracking-[-0.03em] text-[color:var(--dani-espresso)]">
+              Daniela Cerrato
+            </span>
           </Link>
 
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="font-sans text-sm tracking-wider uppercase transition-colors"
-                  style={{ color: '#8A9E8B' }}
-                  onMouseEnter={(e) => ((e.target as HTMLElement).style.color = '#4A8C4E')}
-                  onMouseLeave={(e) => ((e.target as HTMLElement).style.color = '#8A9E8B')}
+                  className="font-sans text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[color:var(--dani-cocoa)] transition-colors hover:text-[color:var(--dani-espresso)]"
                 >
                   {link.label}
                 </Link>
@@ -59,27 +50,24 @@ export function NavBar() {
             </li>
           </ul>
 
-          {/* Mobile hamburger */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center"
-            style={{ color: '#2A3E2B' }}
+            className="flex min-h-[48px] min-w-[48px] items-center justify-center p-2 text-[color:var(--dani-espresso)] transition-colors md:hidden"
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
           >
             {open ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
         </div>
 
-        {/* Mobile drawer */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -87,8 +75,8 @@ export function NavBar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-              className="md:hidden border-t overflow-hidden"
-              style={{ borderColor: '#EDF5E1' }}
+              className="overflow-hidden border-t md:hidden"
+              style={{ borderColor: 'rgba(226,211,194,0.9)' }}
             >
               <ul className="flex flex-col gap-1 py-4">
                 {navLinks.map((link) => (
@@ -96,36 +84,29 @@ export function NavBar() {
                     <Link
                       href={link.href}
                       onClick={() => setOpen(false)}
-                      className="block px-2 py-3 font-sans text-sm tracking-wider uppercase transition-colors min-h-[48px] flex items-center"
-                      style={{ color: '#8A9E8B' }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = '#4A8C4E')}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = '#8A9E8B')}
+                      className="flex min-h-[48px] items-center px-2 py-3 font-sans text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--dani-cocoa)] transition-colors hover:text-[color:var(--dani-espresso)]"
                     >
                       {link.label}
                     </Link>
                   </li>
                 ))}
-                <li className="border-t pt-3 mt-1" style={{ borderColor: '#EDF5E1' }}>
-                  <p className="px-2 font-sans text-xs uppercase tracking-widest mb-2" style={{ color: '#8A9E8B' }}>
-                    Our Sites
-                  </p>
+                <li className="mt-1 border-t pt-3" style={{ borderColor: 'rgba(226,211,194,0.9)' }}>
+                  <p className="mono-label px-2 mb-2">Our Sites</p>
                   <a
                     href="https://thecurriculumcompass.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-2 py-3 font-sans text-sm min-h-[48px] transition-colors"
-                    style={{ color: '#8A9E8B' }}
+                    className="flex min-h-[48px] items-center gap-2 px-2 py-3 font-sans text-sm text-[color:var(--dani-cocoa)] transition-colors hover:text-[color:var(--dani-espresso)]"
                   >
-                    🧭 The Curriculum Compass
+                    The Curriculum Compass
                   </a>
                   <a
                     href="https://statehomeschoollaws.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-2 py-3 font-sans text-sm min-h-[48px] transition-colors"
-                    style={{ color: '#8A9E8B' }}
+                    className="flex min-h-[48px] items-center gap-2 px-2 py-3 font-sans text-sm text-[color:var(--dani-cocoa)] transition-colors hover:text-[color:var(--dani-espresso)]"
                   >
-                    📋 State Homeschool Laws
+                    State Homeschool Laws
                   </a>
                 </li>
               </ul>

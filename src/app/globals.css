@@ -2,65 +2,169 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --dani-mocha: #b89b82;
+  --dani-mocha-deep: #8e7259;
+  --dani-cream: #f5ede3;
+  --dani-sand: #efe3d4;
+  --dani-blush: #c9908a;
+  --dani-blush-deep: #a86e69;
+  --dani-espresso: #2b2420;
+  --dani-cocoa: #7a5c48;
+  --dani-rule: #e2d3c2;
+  --dani-paper: #fffaf3;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: #F6FAF4;
-    font-family: var(--font-nunito), system-ui, sans-serif;
+    margin: 0;
+    background:
+      radial-gradient(circle at 20% 0%, rgba(245, 237, 227, 0.34), transparent 28%),
+      linear-gradient(135deg, var(--dani-mocha), #ad8f76 48%, var(--dani-mocha-deep));
+    color: var(--dani-espresso);
+    font-family: var(--font-sans-brand), Inter, system-ui, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-fredoka), system-ui, sans-serif;
-    font-weight: 600;
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background: rgba(201, 144, 138, 0.38);
   }
 }
 
 @layer components {
+  .editorial-shell {
+    background: var(--dani-mocha);
+    color: var(--dani-espresso);
+  }
+
+  .editorial-card {
+    background: var(--dani-cream);
+    border: 1px solid rgba(226, 211, 194, 0.95);
+    border-radius: 0;
+    box-shadow: 0 20px 50px -25px rgba(40, 28, 20, 0.35);
+  }
+
   .section-label {
-    font-family: var(--font-caveat), cursive;
-    font-weight: 500;
-    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    font-family: var(--font-sans-brand), Inter, system-ui, sans-serif;
+    font-size: 0.58rem;
+    font-weight: 600;
     line-height: 1.2;
-    color: #4A8C4E;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dani-cocoa);
+  }
+
+  .section-label::after {
+    content: '';
+    display: block;
+    height: 1px;
+    flex: 1;
+    min-width: 2rem;
+    background: var(--dani-rule);
+  }
+
+  .mono-label {
+    font-family: var(--font-mono-brand), ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dani-cocoa);
+  }
+
+  .dani-display {
+    font-family: var(--font-display), Georgia, serif;
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: -0.018em;
+  }
+
+  .dani-display em,
+  .display-emphasis {
+    color: var(--dani-blush-deep);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .editorial-button {
+    display: inline-flex;
+    min-height: 48px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--dani-espresso);
+    background: var(--dani-espresso);
+    padding: 0.85rem 1.25rem;
+    font-family: var(--font-sans-brand), Inter, system-ui, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dani-cream);
+    transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+  }
+
+  .editorial-button:hover {
+    transform: translateY(-1px);
+    background: var(--dani-blush-deep);
+    color: #fffaf3;
+  }
+
+  .editorial-button.secondary {
+    background: transparent;
+    color: var(--dani-espresso);
+  }
+
+  .editorial-button.secondary:hover {
+    background: var(--dani-espresso);
+    color: var(--dani-cream);
   }
 
   .divider {
-    width: 3rem;
-    height: 3px;
-    background-color: #F5C430;
-    margin: 1rem auto;
-    border-radius: 2px;
+    width: 100%;
+    height: 1px;
+    margin: 1rem 0;
+    border-radius: 0;
+    background-color: var(--dani-rule);
   }
 
   .prose-content {
-    font-family: var(--font-nunito), system-ui, sans-serif;
+    font-family: var(--font-sans-brand), Inter, system-ui, sans-serif;
     line-height: 1.75;
-    color: #2A3E2B;
+    color: var(--dani-espresso);
+    font-weight: 400;
+  }
+
+  .prose-content h2,
+  .prose-content h3 {
+    font-family: var(--font-display), Georgia, serif;
+    color: var(--dani-espresso);
     font-weight: 400;
   }
 
   .prose-content h2 {
-    font-family: var(--font-fredoka), system-ui, sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
-    color: #2A3E2B;
-    font-weight: 600;
   }
 
   .prose-content h3 {
-    font-family: var(--font-fredoka), system-ui, sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-top: 2rem;
     margin-bottom: 0.75rem;
-    color: #2A3E2B;
-    font-weight: 600;
   }
 
   .prose-content p {
@@ -68,23 +172,16 @@
     line-height: 1.75;
   }
 
-  .prose-content ul {
-    list-style-type: disc;
-    list-style-position: inside;
-    margin-bottom: 1.25rem;
-  }
-
-  .prose-content ul li + li {
-    margin-top: 0.5rem;
-  }
-
+  .prose-content ul,
   .prose-content ol {
-    list-style-type: decimal;
-    list-style-position: inside;
     margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
   }
 
-  .prose-content ol li + li {
+  .prose-content ul { list-style-type: disc; }
+  .prose-content ol { list-style-type: decimal; }
+
+  .prose-content li + li {
     margin-top: 0.5rem;
   }
 
@@ -93,8 +190,8 @@
     font-style: italic;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border-left: 2px solid #F4956A;
-    color: #8A9E8B;
+    border-left: 1px solid var(--dani-blush);
+    color: var(--dani-cocoa);
   }
 
   .prose-content a {
@@ -102,11 +199,7 @@
     text-underline-offset: 2px;
     transition-property: color;
     transition-duration: 200ms;
-    color: #4A8C4E;
-  }
-
-  .prose-content a:hover {
-    color: #3A7040;
+    color: var(--dani-blush-deep);
   }
 
   .prose-content img {
@@ -117,10 +210,9 @@
 
   .prose-content strong {
     font-weight: 600;
-    color: #2A3E2B;
+    color: var(--dani-espresso);
   }
 
-  /* Decorative background pattern */
   .decorative-bg {
     position: relative;
     overflow: hidden;
@@ -130,14 +222,15 @@
     content: '';
     position: absolute;
     inset: 0;
-    opacity: 0.05;
+    opacity: 0.08;
     pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3C!-- Book --%3E%3Crect x='20' y='60' width='60' height='80' rx='4' fill='%234A8C4E'/%3E%3Crect x='25' y='65' width='50' height='70' rx='2' fill='%23F5C430'/%3E%3Cline x1='50' y1='65' x2='50' y2='135' stroke='%234A8C4E' stroke-width='2'/%3E%3C!-- Pencil --%3E%3Crect x='200' y='20' width='12' height='80' rx='2' fill='%23F5C430'/%3E%3Cpolygon points='200,100 212,100 206,116' fill='%23F4956A'/%3E%3Crect x='200' y='20' width='12' height='12' fill='%23F4956A'/%3E%3C!-- Leaf --%3E%3Cellipse cx='320' cy='200' rx='30' ry='50' fill='%234A8C4E' transform='rotate(-30 320 200)'/%3E%3Cline x1='320' y1='160' x2='310' y2='240' stroke='%232A3E2B' stroke-width='2'/%3E%3C!-- Book 2 --%3E%3Crect x='280' y='300' width='50' height='70' rx='4' fill='%2389C4D4'/%3E%3Crect x='285' y='305' width='40' height='60' rx='2' fill='%23F6FAF4'/%3E%3Cline x1='305' y1='305' x2='305' y2='365' stroke='%2389C4D4' stroke-width='2'/%3E%3C!-- Star --%3E%3Cpolygon points='100,280 105,295 120,295 108,304 113,319 100,310 87,319 92,304 80,295 95,295' fill='%23F5C430'/%3E%3C/svg%3E");
-    background-size: 400px 400px;
+    background:
+      linear-gradient(90deg, rgba(43, 36, 32, 0.12) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(43, 36, 32, 0.08) 1px, transparent 1px);
+    background-size: 42px 42px;
   }
 }
 
-/* Tiptap editor prose styles */
 .ProseMirror p.is-editor-empty:first-child::before {
   color: #adb5bd;
   content: attr(data-placeholder);
@@ -167,15 +260,15 @@
 }
 
 .ProseMirror blockquote {
-  border-left: 2px solid #F4956A;
+  border-left: 2px solid var(--dani-blush);
   padding-left: 1.5rem;
-  color: #8A9E8B;
+  color: var(--dani-cocoa);
   font-style: italic;
   margin: 1.5rem 0;
 }
 
 .ProseMirror a {
-  color: #4A8C4E;
+  color: var(--dani-blush-deep);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

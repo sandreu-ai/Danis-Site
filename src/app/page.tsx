@@ -8,12 +8,41 @@ import { LibraryCard } from '@/components/library/LibraryCard'
 import { EmailSignup } from '@/components/ui/EmailSignup'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { DaniHeroText } from '@/components/ui/DaniHeroText'
-import { CompassSiteSection } from '@/components/ui/CompassSiteSection'
 import { createClient } from '@/lib/supabase/server'
 
 export const revalidate = 3600
 
+const brandPhotos = [
+  { src: '/dani-brand/family-yellow.jpg', alt: 'Daniela with her family in warm natural light' },
+  { src: '/dani-brand/kitchen-experiment.jpg', alt: 'Hands-on homeschool kitchen experiment' },
+  { src: '/dani-brand/microscope.jpg', alt: 'Child exploring with a microscope during homeschool' },
+]
+
+const ventures = [
+  {
+    title: 'State Homeschool Laws',
+    copy: 'Clear, state-by-state starting points for families who need the legal basics without the spiral.',
+    href: 'https://statehomeschoollaws.com',
+    label: 'Legal basics',
+  },
+  {
+    title: 'The Curriculum Compass',
+    copy: 'Curriculum notes, comparisons, and practical direction for choosing what actually fits your family.',
+    href: 'https://thecurriculumcompass.com',
+    label: 'Curriculum help',
+  },
+  {
+    title: 'HomeBiz Kids',
+    copy: 'A family-first project about raising capable kids through real-world responsibility and small business thinking.',
+    label: 'In progress',
+  },
+]
+
 async function getData() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return { posts: [], products: [], library: [] }
+  }
+
   const supabase = await createClient()
 
   const [postsRes, productsRes, libraryRes] = await Promise.all([
@@ -43,199 +72,216 @@ async function getData() {
   }
 }
 
+function SectionHeader({ label, title, copy }: { label: string; title: React.ReactNode; copy?: string }) {
+  return (
+    <div className="mb-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+      <div>
+        <p className="section-label mb-5">{label}</p>
+        <h2 className="dani-display text-5xl sm:text-6xl lg:text-7xl">{title}</h2>
+      </div>
+      {copy && <p className="max-w-xl font-sans text-sm leading-7 text-[color:var(--dani-cocoa)]">{copy}</p>}
+    </div>
+  )
+}
+
 export default async function HomePage() {
   const { posts, products, library } = await getData()
 
   return (
     <>
       <NavBar />
-      <main className="flex-1">
-
-        {/* Hero — full screen with homeschool bookshelf portrait */}
-        <section className="relative min-h-screen flex items-end">
-          <Image
-            src="/hero-bookshelf-wide.jpeg"
-            alt="Daniela smiling in her homeschool room beside shelves of books, games, and art supplies"
-            fill
-            priority
-            className="object-cover object-[78%_42%]"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-          <DaniHeroText />
+      <main className="editorial-shell flex-1">
+        <section className="relative overflow-hidden px-3 py-4 sm:px-5 sm:py-6">
+          <div className="relative mx-auto min-h-[calc(100vh-104px)] max-w-7xl overflow-hidden border border-[color:var(--dani-rule)] bg-[color:var(--dani-sand)]">
+            <Image
+              src="/dani-brand/family-sunset.jpg"
+              alt="Daniela Cerrato family moment in warm sunset light"
+              fill
+              priority
+              className="object-cover object-center opacity-45 mix-blend-multiply"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(245,237,227,0.92)] via-[rgba(245,237,227,0.74)] to-[rgba(184,155,130,0.62)]" />
+            <DaniHeroText />
+          </div>
         </section>
 
-        {/* Email signup */}
-        <section className="py-14 sm:py-20" style={{ backgroundColor: '#2A3E2B' }}>
-          <div className="mx-auto max-w-xl px-6">
+        <section className="px-3 pb-4 sm:px-5 sm:pb-6">
+          <div className="mx-auto max-w-7xl bg-[color:var(--dani-mocha-deep)] p-4 sm:p-6 lg:p-10">
             <EmailSignup />
           </div>
         </section>
 
-        {/* Featured Products */}
-        {products.length > 0 && (
-          <section className="py-14 sm:py-20 md:py-28 bg-white decorative-bg">
-            <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-              <AnimatedSection className="text-center mb-14">
-                <p className="section-label mb-2">the shop</p>
-                <h2 className="text-3xl sm:text-4xl mb-4" style={{ color: '#2A3E2B', fontFamily: 'var(--font-fredoka)' }}>
-                  Tools to Make It Easier
-                </h2>
-                <div className="divider" />
+        <section className="px-3 pb-4 sm:px-5 sm:pb-6">
+          <div className="mx-auto max-w-7xl bg-[color:var(--dani-cream)] p-6 sm:p-10 lg:p-14">
+            <SectionHeader
+              label="A real-life homeschool note"
+              title={<>Intentional parenting, meaningful <em>learning.</em></>}
+              copy="Daniela's world should feel like a thoughtful editorial home base: warm, useful, and grounded in real family rhythms rather than loud influencer energy."
+            />
+
+            <div className="grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+              <AnimatedSection direction="left" className="grid gap-4 sm:grid-cols-2">
+                <div className="relative min-h-[320px] overflow-hidden bg-[color:var(--dani-sand)] sm:col-span-2 lg:min-h-[360px]">
+                  <Image
+                    src="/dani-brand/mom-boys.jpg"
+                    alt="Daniela with her boys"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </div>
+                {brandPhotos.slice(1).map((photo) => (
+                  <div key={photo.src} className="relative min-h-[180px] overflow-hidden bg-[color:var(--dani-sand)]">
+                    <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="(max-width: 768px) 50vw, 25vw" />
+                  </div>
+                ))}
               </AnimatedSection>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+              <AnimatedSection direction="right" className="border border-[color:var(--dani-rule)] bg-[color:var(--dani-paper)] p-7 sm:p-10">
+                <p className="mono-label">Meet Daniela</p>
+                <h3 className="mt-8 font-display text-4xl leading-tight sm:text-5xl">
+                  A home can be gentle and still raise capable kids.
+                </h3>
+                <p className="mt-6 font-sans text-sm leading-7 text-[color:var(--dani-cocoa)]">
+                  Hi, I&apos;m Daniela — a homeschool mom sharing the practical middle: what we try,
+                  what helps, what flops, and what keeps our days moving with more peace and less noise.
+                </p>
+                <p className="mt-4 font-sans text-sm leading-7 text-[color:var(--dani-cocoa)]">
+                  If you&apos;re wondering whether you can really do this, you can. The goal is not a perfect schoolroom.
+                  The goal is a life of curiosity, faithfulness, and steady growth together.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link href="/about" className="editorial-button">About Daniela</Link>
+                  <a href="https://www.instagram.com/thedanicerrato" target="_blank" rel="noopener noreferrer" className="editorial-button secondary">
+                    Instagram
+                  </a>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {products.length > 0 && (
+          <section className="px-3 pb-4 sm:px-5 sm:pb-6">
+            <div className="mx-auto max-w-7xl bg-[color:var(--dani-sand)] p-6 sm:p-10 lg:p-14">
+              <AnimatedSection>
+                <SectionHeader
+                  label="The shop"
+                  title={<>Tools for calmer <em>days.</em></>}
+                  copy="Resources should feel useful first: less clutter, more clarity, and a clear next step for the family using them."
+                />
+              </AnimatedSection>
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {products.map((product, i) => (
                   <AnimatedSection key={product.id} delay={i * 0.08}>
                     <ProductCard product={product} />
                   </AnimatedSection>
                 ))}
               </div>
-              <div className="text-center mt-12">
-                <Link
-                  href="/shop"
-                  className="font-sans text-sm font-semibold tracking-wider uppercase border-b-2 pb-0.5 transition-colors"
-                  style={{ color: '#4A8C4E', borderColor: '#4A8C4E' }}
-                >
-                  View all resources
-                </Link>
+              <div className="mt-10">
+                <Link href="/shop" className="editorial-button secondary">View all resources</Link>
               </div>
             </div>
           </section>
         )}
 
-        {/* Latest Posts */}
         {posts.length > 0 && (
-          <section className="py-14 sm:py-20 md:py-28" style={{ backgroundColor: '#F6FAF4' }}>
-            <div className="mx-auto max-w-6xl px-6 lg:px-8">
-              <AnimatedSection className="text-center mb-14">
-                <p className="section-label mb-2">from the blog</p>
-                <h2 className="text-3xl sm:text-4xl mb-4" style={{ color: '#2A3E2B', fontFamily: 'var(--font-fredoka)' }}>
-                  Real Talk from a Real Mom
-                </h2>
-                <div className="divider" />
+          <section className="px-3 pb-4 sm:px-5 sm:pb-6">
+            <div className="mx-auto max-w-7xl bg-[color:var(--dani-cream)] p-6 sm:p-10 lg:p-14">
+              <AnimatedSection>
+                <SectionHeader
+                  label="The journal"
+                  title={<>Real talk from a real <em>mom.</em></>}
+                  copy="Editorial, warm, and specific — posts should feel like a note from a friend who is a few steps ahead."
+                />
               </AnimatedSection>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post, i) => (
                   <AnimatedSection key={post.id} delay={i * 0.1}>
                     <PostCard post={post} />
                   </AnimatedSection>
                 ))}
               </div>
-              <div className="text-center mt-12">
-                <Link
-                  href="/blog"
-                  className="font-sans text-sm font-semibold tracking-wider uppercase border-b-2 pb-0.5 transition-colors"
-                  style={{ color: '#4A8C4E', borderColor: '#4A8C4E' }}
-                >
-                  Read all posts
-                </Link>
+              <div className="mt-10">
+                <Link href="/blog" className="editorial-button secondary">Read all posts</Link>
               </div>
             </div>
           </section>
         )}
 
-        {/* Dani's Picks */}
         {library.length > 0 && (
-          <section className="py-14 sm:py-20 md:py-28 decorative-bg" style={{ backgroundColor: '#EDF5E1' }}>
-            <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
-              <AnimatedSection className="text-center mb-14">
-                <p className="section-label mb-2">my favorites</p>
-                <h2 className="text-3xl sm:text-4xl mb-4" style={{ color: '#2A3E2B', fontFamily: 'var(--font-fredoka)' }}>
-                  Dani&apos;s Picks
-                </h2>
-                <div className="divider" />
-              </AnimatedSection>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {library.map((item, i) => (
-                  <AnimatedSection key={item.id} delay={i * 0.08}>
-                    <LibraryCard item={item} />
-                  </AnimatedSection>
-                ))}
-              </div>
-              <div className="text-center mt-12">
-                <Link
-                  href="/library"
-                  className="font-sans text-sm font-semibold tracking-wider uppercase border-b-2 pb-0.5 transition-colors"
-                  style={{ color: '#4A8C4E', borderColor: '#4A8C4E' }}
-                >
-                  View all picks
-                </Link>
+          <section className="px-3 pb-4 sm:px-5 sm:pb-6">
+            <div className="decorative-bg mx-auto max-w-7xl bg-[color:var(--dani-paper)] p-6 sm:p-10 lg:p-14">
+              <div className="relative z-10">
+                <AnimatedSection>
+                  <SectionHeader
+                    label="Dani's picks"
+                    title={<>Favorites with a <em>reason.</em></>}
+                    copy="A tighter, more premium shelf for the books, tools, and finds Daniela can actually stand behind."
+                  />
+                </AnimatedSection>
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                  {library.map((item, i) => (
+                    <AnimatedSection key={item.id} delay={i * 0.08}>
+                      <LibraryCard item={item} />
+                    </AnimatedSection>
+                  ))}
+                </div>
+                <div className="mt-10">
+                  <Link href="/library" className="editorial-button secondary">View all picks</Link>
+                </div>
               </div>
             </div>
           </section>
         )}
 
-        {/* About section */}
-        <section className="py-14 sm:py-20 md:py-28 bg-white">
-          <div className="mx-auto max-w-5xl px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              <AnimatedSection direction="left">
-                <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 overflow-hidden rounded-2xl shadow-[0_8px_40px_rgba(42,62,43,0.15)]">
-                  <Image
-                    src="/about.jpeg"
-                    alt="Daniela with her son at their homeschool desk"
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 90vw, 40vw"
-                  />
-                </div>
-              </AnimatedSection>
+        <section className="px-3 pb-4 sm:px-5 sm:pb-6">
+          <div className="mx-auto max-w-7xl bg-[color:var(--dani-mocha-deep)] p-6 text-[color:var(--dani-cream)] sm:p-10 lg:p-14">
+            <div className="mb-10 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
+                <p className="mb-5 flex items-center gap-3 font-sans text-[0.58rem] font-semibold uppercase tracking-[0.3em] text-[rgba(245,237,227,0.78)] after:h-px after:flex-1 after:bg-[rgba(245,237,227,0.28)]">Ventures</p>
+                <h2 className="dani-display text-5xl text-[color:var(--dani-cream)] sm:text-6xl lg:text-7xl">A family of useful <em>projects.</em></h2>
+              </div>
+              <p className="max-w-xl font-sans text-sm leading-7 text-[rgba(245,237,227,0.82)]">
+                The site now has a clearer place to route people into the broader ecosystem without making the homepage feel like a link farm.
+              </p>
+            </div>
+            <div className="grid gap-4 lg:grid-cols-3">
+              {ventures.map((venture) => {
+                const card = (
+                  <>
+                    <p className="mono-label text-[rgba(245,237,227,0.72)]">{venture.label}</p>
+                    <h3 className="mt-8 font-display text-4xl leading-none text-[color:var(--dani-cream)]">{venture.title}</h3>
+                    <p className="mt-5 font-sans text-sm leading-7 text-[rgba(245,237,227,0.74)]">{venture.copy}</p>
+                    <p className="mt-8 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[color:var(--dani-cream)]">
+                      {venture.href ? 'Visit →' : 'Coming soon'}
+                    </p>
+                  </>
+                )
 
-              <AnimatedSection direction="right">
-                <p className="section-label mb-3">meet daniela</p>
-                <h2
-                  className="text-3xl sm:text-4xl mt-1 mb-5 leading-snug"
-                  style={{ color: '#2A3E2B', fontFamily: 'var(--font-fredoka)' }}
-                >
-                  Growing With My Kids,<br /> Not Apart from Them
-                </h2>
-                <div className="divider" style={{ margin: '0 0 1.5rem 0' }} />
-                <p className="font-sans leading-relaxed mb-4" style={{ color: '#8A9E8B' }}>
-                  Hi! I&apos;m Daniela — a homeschool mom who stumbled into this journey
-                  and never looked back. Homeschooling isn&apos;t about having all the
-                  answers. It&apos;s about being present, being curious, and growing
-                  right alongside your kids.
-                </p>
-                <p className="font-sans leading-relaxed mb-8" style={{ color: '#8A9E8B' }}>
-                  If you&apos;re wondering whether you can really do this — you can.
-                  Follow along on Instagram{' '}
+                return venture.href ? (
                   <a
-                    href="https://www.instagram.com/thedanicerrato"
+                    key={venture.title}
+                    href={venture.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline underline-offset-2 transition-colors"
-                    style={{ color: '#4A8C4E' }}
+                    className="group border border-[rgba(245,237,227,0.32)] p-6 transition-colors hover:bg-[rgba(245,237,227,0.08)]"
                   >
-                    @thedanicerrato
-                  </a>{' '}
-                  for the real, unfiltered side of our homeschool life.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link
-                    href="/about"
-                    className="inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-full text-white transition-colors duration-300 min-h-[52px]"
-                    style={{ backgroundColor: '#4A8C4E' }}
+                    {card}
+                  </a>
+                ) : (
+                  <div
+                    key={venture.title}
+                    className="border border-[rgba(245,237,227,0.24)] p-6 opacity-80"
                   >
-                    Learn More About Me
-                  </Link>
-                  <Link
-                    href="/shop"
-                    className="inline-flex items-center justify-center font-sans text-sm font-semibold tracking-wider uppercase px-8 py-4 rounded-full border-2 transition-all duration-300 min-h-[52px]"
-                    style={{ borderColor: '#4A8C4E', color: '#4A8C4E' }}
-                  >
-                    Browse Resources
-                  </Link>
-                </div>
-              </AnimatedSection>
+                    {card}
+                  </div>
+                )
+              })}
             </div>
           </div>
         </section>
-
-        {/* The Curriculum Compass cross-link */}
-        <section style={{ backgroundColor: '#F6FAF4' }}>
-          <CompassSiteSection />
-        </section>
-
       </main>
       <Footer />
     </>

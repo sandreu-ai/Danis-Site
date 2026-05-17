@@ -5,12 +5,6 @@ export const revalidate = 3600
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const appUrl = 'https://www.danielacerrato.com'
-  const supabase = createAdminClient()
-
-  const [{ data: posts }, { data: products }] = await Promise.all([
-    supabase.from('posts').select('slug, updated_at').eq('published', true),
-    supabase.from('products').select('slug, updated_at'),
-  ])
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: appUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1 },
@@ -19,6 +13,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${appUrl}/library`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
     { url: `${appUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
   ]
+
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return staticRoutes
+  }
+
+  const supabase = createAdminClient()
+
+  const [{ data: posts }, { data: products }] = await Promise.all([
+    supabase.from('posts').select('slug, updated_at').eq('published', true),
+    supabase.from('products').select('slug, updated_at'),
+  ])
 
   const postRoutes: MetadataRoute.Sitemap = (posts ?? []).map((p) => ({
     url: `${appUrl}/blog/${p.slug}`,

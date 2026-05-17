@@ -1,8 +1,30 @@
 import type { Metadata } from 'next'
-import { Fredoka, Nunito, Caveat } from 'next/font/google'
+import { Caveat, Cormorant_Garamond, Fredoka, Inter, JetBrains_Mono, Nunito } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans-brand',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono-brand',
+  weight: ['400', '500'],
+  display: 'swap',
+})
 
 const fredoka = Fredoka({
   subsets: ['latin'],
@@ -39,7 +61,7 @@ const organizationJsonLd = {
     'https://www.tiktok.com/@thedanicerrato',
   ],
   description:
-    'Homeschool mom sharing resources, encouragement, and practical help for families learning at home.',
+    'Homeschool mom sharing real rhythms, intentional learning, and practical resources for families learning at home.',
 }
 
 const websiteJsonLd = {
@@ -52,18 +74,18 @@ const websiteJsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL(appUrl),
   title: {
-    default: 'Daniela Cerrato — Homeschooling Made Simple',
+    default: 'Daniela Cerrato — Raise Them on Purpose',
     template: '%s | Daniela Cerrato',
   },
   description:
-    'Homeschooling resources, printables, and real-life encouragement from a mom who gets it. You can do this — and you don\'t have to figure it out alone.',
+    'Warm, practical homeschool rhythms, family resources, and honest encouragement from Daniela Cerrato for intentional homes and curious kids.',
   keywords: [
     'Daniela Cerrato',
     'homeschool mom',
+    'intentional parenting',
     'homeschool encouragement',
-    'homeschool schedule',
     'homeschool resources',
-    'Catholic homeschool',
+    'family rhythms',
   ],
   alternates: {
     canonical: '/',
@@ -78,7 +100,7 @@ export const metadata: Metadata = {
         url: '/og-default.jpg',
         width: 1200,
         height: 630,
-        alt: 'Daniela Cerrato — Faith-Filled Homeschooling Resources',
+        alt: 'Daniela Cerrato — Raise them on purpose',
       },
     ],
   },
@@ -97,7 +119,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${fredoka.variable} ${nunito.variable} ${caveat.variable}`}>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${inter.variable} ${jetbrains.variable} ${fredoka.variable} ${nunito.variable} ${caveat.variable}`}
+    >
       <head>
         <script
           type="application/ld+json"
@@ -108,7 +133,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
       </head>
-      <body className="flex flex-col min-h-screen bg-cream font-sans antialiased">
+      <body className="flex min-h-screen flex-col antialiased">
         {children}
         <Analytics />
         <SpeedInsights />
