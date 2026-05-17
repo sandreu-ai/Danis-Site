@@ -21,15 +21,15 @@ export function NavBar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: 'spring', stiffness: 260, damping: 28 }}
       className="sticky top-0 z-50 border-b backdrop-blur-md"
-      style={{ backgroundColor: 'rgba(245,237,227,0.94)', borderColor: 'rgba(226,211,194,0.9)' }}
+      style={{ backgroundColor: 'rgba(250,246,240,0.94)', borderColor: 'rgba(230,216,199,0.92)' }}
     >
-      <nav className="mx-auto max-w-6xl px-6 lg:px-8">
+      <nav className="mx-auto max-w-7xl px-5 lg:px-8">
         <div className="flex h-16 items-center justify-between sm:h-[72px]">
           <Link href="/" className="group flex items-center gap-3 transition-colors">
-            <span className="flex h-9 w-9 items-center justify-center border border-[color:var(--dani-espresso)] font-display text-xl leading-none text-[color:var(--dani-espresso)]">
-              dc
+            <span className="flex h-9 w-9 items-center justify-center border border-[color:var(--dani-gold)] font-display text-xl italic leading-none text-[color:var(--dani-espresso)]">
+              DC
             </span>
-            <span className="font-display text-2xl leading-none tracking-[-0.03em] text-[color:var(--dani-espresso)]">
+            <span className="font-display text-2xl italic leading-none tracking-[-0.03em] text-[color:var(--dani-espresso)]">
               Daniela Cerrato
             </span>
           </Link>

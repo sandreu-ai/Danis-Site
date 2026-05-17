@@ -56,7 +56,7 @@ export function EmailSignup() {
         </p>
 
         {status === 'success' ? (
-          <p className="mt-6 font-sans text-sm font-semibold text-[color:var(--dani-blush-deep)]">{message}</p>
+          <p className="mt-6 font-sans text-sm font-semibold text-[color:var(--dani-cocoa)]">{message}</p>
         ) : (
           <form onSubmit={handleSubmit} className="mt-7 flex flex-col gap-3 sm:flex-row">
             <input
@@ -65,7 +65,7 @@ export function EmailSignup() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               required
-              className="min-h-[48px] flex-1 border border-[color:var(--dani-rule)] bg-[color:var(--dani-paper)] px-4 py-3 font-sans text-sm text-[color:var(--dani-espresso)] outline-none transition-colors placeholder:text-[color:var(--dani-cocoa)] focus:border-[color:var(--dani-blush-deep)]"
+              className="min-h-[48px] flex-1 border border-[color:var(--dani-rule)] bg-[color:var(--dani-paper)] px-4 py-3 font-sans text-sm text-[color:var(--dani-espresso)] outline-none transition-colors placeholder:text-[color:var(--dani-cocoa)] focus:border-[color:var(--dani-gold)]"
             />
             <button
               type="submit"
@@ -78,7 +78,7 @@ export function EmailSignup() {
         )}
 
         {status === 'error' && (
-          <p className="mt-3 font-sans text-xs text-[color:var(--dani-blush-deep)]">{message}</p>
+          <p className="mt-3 font-sans text-xs text-[color:var(--dani-cocoa)]">{message}</p>
         )}
       </div>
     </div>

@@ -19,10 +19,10 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1.3fr_0.7fr_0.8fr]">
           <motion.div custom={0} initial="hidden" whileInView="show" viewport={{ once: true }} variants={colVariants}>
             <div className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center border border-[rgba(245,237,227,0.7)] font-display text-xl leading-none">
-                dc
+              <span className="flex h-10 w-10 items-center justify-center border border-[rgba(184,153,104,0.82)] font-display text-xl italic leading-none">
+                DC
               </span>
-              <p className="font-display text-3xl leading-none">Daniela Cerrato</p>
+              <p className="font-display text-3xl italic leading-none">Daniela Cerrato</p>
             </div>
             <p className="mt-5 max-w-md font-sans text-sm leading-7 text-[rgba(245,237,227,0.68)]">
               Real rhythms for real families — homeschool resources, intentional parenting notes,

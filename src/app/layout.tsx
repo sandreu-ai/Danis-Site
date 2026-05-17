@@ -54,7 +54,7 @@ const organizationJsonLd = {
   '@type': 'Person',
   name: 'Daniela Cerrato',
   url: appUrl,
-  image: `${appUrl}/Daniela.jpg`,
+  image: `${appUrl}/dani-brand/bookshelf-hero.jpg`,
   sameAs: [
     'https://www.instagram.com/thedanicerrato',
     'https://www.facebook.com/thedanicerrato',

@@ -30,7 +30,7 @@ export function ProductCard({ product }: ProductCardProps) {
         )}
         <div className="flex flex-1 flex-col p-5">
           <p className="mono-label mb-4">Resource</p>
-          <h3 className="font-display text-3xl leading-none text-[color:var(--dani-espresso)] transition-colors group-hover:text-[color:var(--dani-blush-deep)]">
+          <h3 className="font-display text-3xl leading-none text-[color:var(--dani-espresso)] transition-colors group-hover:text-[color:var(--dani-cocoa)]">
             {product.title}
           </h3>
           <p className="mt-5 font-sans text-sm font-semibold text-[color:var(--dani-cocoa)]">

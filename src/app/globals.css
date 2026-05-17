@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --dani-mocha: #b89b82;
-  --dani-mocha-deep: #8e7259;
-  --dani-cream: #f5ede3;
-  --dani-sand: #efe3d4;
+  --dani-ivory: #faf6f0;
+  --dani-cream: #ffffff;
+  --dani-sand: #f5ede3;
+  --dani-gold: #b89968;
   --dani-blush: #c9908a;
-  --dani-blush-deep: #a86e69;
-  --dani-espresso: #2b2420;
-  --dani-cocoa: #7a5c48;
-  --dani-rule: #e2d3c2;
-  --dani-paper: #fffaf3;
+  --dani-mocha: #b89b82;
+  --dani-cocoa: #8a6b57;
+  --dani-espresso: #1f1a17;
+  --dani-rule: #e6d8c7;
+  --dani-paper: #faf6f0;
 }
 
 @layer base {
@@ -23,8 +23,8 @@
   body {
     margin: 0;
     background:
-      radial-gradient(circle at 20% 0%, rgba(245, 237, 227, 0.34), transparent 28%),
-      linear-gradient(135deg, var(--dani-mocha), #ad8f76 48%, var(--dani-mocha-deep));
+      radial-gradient(circle at 18% 0%, rgba(250, 246, 240, 0.58), transparent 30%),
+      linear-gradient(135deg, var(--dani-ivory), var(--dani-sand) 52%, rgba(184, 155, 130, 0.54));
     color: var(--dani-espresso);
     font-family: var(--font-sans-brand), Inter, system-ui, sans-serif;
     font-weight: 400;
@@ -45,7 +45,7 @@
 
 @layer components {
   .editorial-shell {
-    background: var(--dani-mocha);
+    background: var(--dani-ivory);
     color: var(--dani-espresso);
   }
 
@@ -95,7 +95,7 @@
 
   .dani-display em,
   .display-emphasis {
-    color: var(--dani-blush-deep);
+    color: var(--dani-gold);
     font-style: italic;
     font-weight: 400;
   }
@@ -119,8 +119,8 @@
 
   .editorial-button:hover {
     transform: translateY(-1px);
-    background: var(--dani-blush-deep);
-    color: #fffaf3;
+    background: var(--dani-espresso);
+    color: var(--dani-cream);
   }
 
   .editorial-button.secondary {
@@ -131,6 +131,26 @@
   .editorial-button.secondary:hover {
     background: var(--dani-espresso);
     color: var(--dani-cream);
+  }
+
+  .safe-photo-frame {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(250, 246, 240, 0.94), rgba(245, 237, 227, 0.92)),
+      var(--dani-sand);
+  }
+
+  .safe-photo-frame img {
+    padding: clamp(0.35rem, 1vw, 0.85rem);
+  }
+
+  .safe-photo-frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(31, 26, 23, 0.04);
   }
 
   .divider {
@@ -190,7 +210,7 @@
     font-style: italic;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border-left: 1px solid var(--dani-blush);
+    border-left: 1px solid var(--dani-gold);
     color: var(--dani-cocoa);
   }
 
@@ -199,7 +219,7 @@
     text-underline-offset: 2px;
     transition-property: color;
     transition-duration: 200ms;
-    color: var(--dani-blush-deep);
+    color: var(--dani-cocoa);
   }
 
   .prose-content img {
@@ -268,7 +288,7 @@
 }
 
 .ProseMirror a {
-  color: var(--dani-blush-deep);
+  color: var(--dani-cocoa);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

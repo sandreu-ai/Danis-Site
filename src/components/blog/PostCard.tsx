@@ -34,11 +34,11 @@ export function PostCard({ post }: PostCardProps) {
               {formatDate(post.created_at)}
             </time>
           </div>
-          <h3 className="font-display text-3xl leading-tight text-[color:var(--dani-espresso)] transition-colors group-hover:text-[color:var(--dani-blush-deep)]">
+          <h3 className="font-display text-3xl leading-tight text-[color:var(--dani-espresso)] transition-colors group-hover:text-[color:var(--dani-cocoa)]">
             {post.title}
           </h3>
           {excerpt && <p className="mt-4 font-sans text-sm leading-7 text-[color:var(--dani-cocoa)]">{excerpt}</p>}
-          <p className="mt-6 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--dani-blush-deep)]">
+          <p className="mt-6 font-sans text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--dani-cocoa)]">
             Read more →
           </p>
         </div>
