@@ -13,9 +13,9 @@ import { createClient } from '@/lib/supabase/server'
 export const revalidate = 3600
 
 const brandPhotos = [
-  { src: '/dani-brand/family-yellow.jpg', alt: 'Daniela with her family in warm natural light' },
-  { src: '/dani-brand/kitchen-experiment.jpg', alt: 'Hands-on homeschool kitchen experiment' },
-  { src: '/dani-brand/microscope.jpg', alt: 'Child exploring with a microscope during homeschool' },
+  { src: '/dani-brand/family-portrait.jpg', alt: 'Daniela with her family in warm natural light' },
+  { src: '/dani-brand/mom-kiss.jpg', alt: 'Daniela sharing a tender family moment' },
+  { src: '/dani-brand/mom-lift.jpg', alt: 'Daniela lifting her child in a playful homeschool moment' },
 ]
 
 const ventures = [

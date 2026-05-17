@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { formatPrice } from '@/lib/utils'
 import type { Product } from '@/types'
 
@@ -12,51 +11,38 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <motion.div
-      whileHover={{ y: -6, boxShadow: '0 8px 40px rgba(42,62,43,0.15)' }}
-      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-      className="group bg-white rounded-card shadow-card flex flex-col"
-    >
-      <Link href={`/shop/${product.slug}`}>
+    <article className="group flex h-full flex-col border border-[color:var(--dani-rule)] bg-[color:var(--dani-paper)]">
+      <Link href={`/shop/${product.slug}`} className="block">
         {product.cover_image_url ? (
-          <div className="relative aspect-[4/3] overflow-hidden rounded-t-card">
+          <div className="relative aspect-[5/4] overflow-hidden bg-[color:var(--dani-sand)]">
             <Image
               src={product.cover_image_url}
               alt={product.title}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
             />
           </div>
         ) : (
-          <div className="aspect-[4/3] rounded-t-card bg-linen flex items-center justify-center">
-            <svg className="w-12 h-12 text-sage/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+          <div className="flex aspect-[5/4] items-center justify-center bg-[color:var(--dani-sand)] p-6 text-center">
+            <span className="mono-label">Digital resource</span>
           </div>
         )}
-        <div className="p-5 flex-1 flex flex-col">
-          <h3
-            className="text-base font-bold mb-2 line-clamp-2 group-hover:text-sage transition-colors"
-            style={{ fontFamily: 'var(--font-fredoka)', color: '#2A3E2B' }}
-          >
+        <div className="flex flex-1 flex-col p-5">
+          <p className="mono-label mb-4">Resource</p>
+          <h3 className="font-display text-3xl leading-none text-[color:var(--dani-espresso)] transition-colors group-hover:text-[color:var(--dani-blush-deep)]">
             {product.title}
           </h3>
-          <p className="font-sans text-lg font-bold text-sage mt-auto">
+          <p className="mt-5 font-sans text-sm font-semibold text-[color:var(--dani-cocoa)]">
             {formatPrice(product.price)}
           </p>
         </div>
       </Link>
-      <div className="px-5 pb-5">
-        <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 20 }}>
-          <Link
-            href={`/shop/${product.slug}`}
-            className="block w-full text-center bg-sage text-white font-sans font-semibold rounded-lg py-2.5 text-sm hover:bg-sage-dark transition-colors min-h-[44px] flex items-center justify-center"
-          >
-            View Details
-          </Link>
-        </motion.div>
+      <div className="mt-auto px-5 pb-5">
+        <Link href={`/shop/${product.slug}`} className="editorial-button secondary w-full">
+          View Details
+        </Link>
       </div>
-    </motion.div>
+    </article>
   )
 }
