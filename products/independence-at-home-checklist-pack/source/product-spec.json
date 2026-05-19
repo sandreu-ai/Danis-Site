@@ -1,0 +1,112 @@
+{
+  "title": "The Independence-at-Home Checklist Pack",
+  "tagline": "Printable + laminate-friendly routines to help kids learn responsibility without constant reminders.",
+  "brand_top": "Raising Capable Kids \u2014 Simple visual checklists for more independence at home",
+  "brand_bottom": "Daniela Cerrato | @Thedanicerrato",
+  "positioning": "You don\u2019t need an expensive system to raise independent kids. You need clear expectations, consistency, and visuals.",
+  "palette": {
+    "cream": "#FBF7EF",
+    "soft_cream": "#FFFDF8",
+    "sage": "#9CAF88",
+    "dusty_blue": "#8EA6B4",
+    "terracotta": "#C47C65",
+    "mustard": "#D5B15F",
+    "clay": "#B58B7A",
+    "espresso": "#2B211C",
+    "cocoa": "#7A6256",
+    "border": "#D9C8B9",
+    "line": "#CBB9A8"
+  },
+  "checklists": [
+    {
+      "title": "Bedroom Reset Checklist",
+      "subtitle": "A simple room reset before the next part of the day.",
+      "icon": "bed",
+      "accent": "sage",
+      "items": [
+        "Make my bed",
+        "Put pajamas or clothes in the basket",
+        "Put books and toys back where they belong",
+        "Clear the floor",
+        "Open or straighten curtains",
+        "Check: Does my room feel ready?"
+      ],
+      "gentle_note": "Parent tip: Start with three items for younger children, then add the rest when the rhythm feels natural."
+    },
+    {
+      "title": "Bathroom Cleanup Checklist",
+      "subtitle": "Small habits that make the bathroom peaceful for the next person.",
+      "icon": "toothbrush",
+      "accent": "dusty_blue",
+      "items": [
+        "Hang my towel",
+        "Put toothbrush and toothpaste away",
+        "Wipe the sink area if needed",
+        "Put clothes in the basket",
+        "Close cabinets or drawers",
+        "Check: Is the bathroom ready for the next person?"
+      ],
+      "gentle_note": "Parent tip: Keep a small cloth within reach if wiping the sink is part of the routine."
+    },
+    {
+      "title": "After-Meal Checklist",
+      "subtitle": "A calm routine for helping after snacks and meals.",
+      "icon": "plate",
+      "accent": "terracotta",
+      "items": [
+        "Bring my plate, cup, and utensils to the sink",
+        "Throw away trash",
+        "Wipe my spot at the table",
+        "Push in my chair",
+        "Put lunchbox or snack items away",
+        "Check: Is my eating space clean?"
+      ],
+      "gentle_note": "Parent tip: Practice right after one meal each day before expecting it after every meal."
+    },
+    {
+      "title": "Living Room Reset",
+      "subtitle": "A quick family-space reset so everyone can enjoy the room.",
+      "icon": "basket",
+      "accent": "mustard",
+      "items": [
+        "Put pillows back",
+        "Fold or place blankets neatly",
+        "Return books to the shelf",
+        "Put toys or activities in their basket",
+        "Look under the couch or table",
+        "Check: Is the room ready for the family?"
+      ],
+      "gentle_note": "Parent tip: Use one basket for items that need to return to other rooms after the reset."
+    },
+    {
+      "title": "Morning Routine Checklist",
+      "subtitle": "A visual rhythm for beginning the day without repeated reminders.",
+      "icon": "sun",
+      "accent": "clay",
+      "items": [
+        "Use the bathroom",
+        "Get dressed",
+        "Make my bed",
+        "Brush teeth and hair",
+        "Put pajamas away",
+        "Come to breakfast or morning time"
+      ],
+      "gentle_note": "Parent tip: Keep this checklist near the bedroom or bathroom, not hidden in a binder."
+    },
+    {
+      "title": "Bedtime Routine Checklist",
+      "subtitle": "A gentle end-of-day rhythm children can learn to follow.",
+      "icon": "moon",
+      "accent": "sage",
+      "items": [
+        "Put on pajamas",
+        "Put clothes in the basket",
+        "Brush teeth",
+        "Choose tomorrow\u2019s clothes or items",
+        "Put away books or toys",
+        "Get in bed for story, prayer, or goodnight"
+      ],
+      "gentle_note": "Parent tip: If evenings feel rushed, begin the checklist 15 minutes earlier for one week."
+    }
+  ]
+}
