@@ -158,7 +158,7 @@ export default async function HomePage() {
                   Raise them <em>on purpose.</em>
                 </h1>
                 <p className="mt-8 max-w-xl font-sans text-base leading-8 text-[color:var(--dani-cocoa)]">
-                  Real homeschool rhythms, curriculum guidance, and family-centered encouragement from a former teacher turned mom of four.
+                  Real homeschool rhythms, curriculum guidance, and family-centered encouragement from a former teacher turned mom of two.
                 </p>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                   <Link href="/blog" className="editorial-button">Read the Journal</Link>
