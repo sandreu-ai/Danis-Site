@@ -201,7 +201,7 @@ export default async function HomePage() {
             <SectionHeader
               label="The heart of the work"
               title={<>Curious children, intentional <em>homes.</em></>}
-              copy="The site should feel like Daniela herself: tender, grounded, useful, and quietly confident. Not over-produced. Not noisy. Just clear guidance and real family rhythms with an editorial finish."
+              copy="A calmer way to homeschool: practical guidance, real family rhythms, and encouragement for building a home where curiosity has room to grow."
             />
 
             <div className="grid gap-4 lg:grid-cols-[0.88fr_1.12fr]">
@@ -251,7 +251,7 @@ export default async function HomePage() {
                 <SectionHeader
                   label="The shop"
                   title={<>Tools for calmer <em>days.</em></>}
-                  copy="Resources should feel useful first: less clutter, more clarity, and a clear next step for the family using them."
+                  copy="Simple, thoughtful resources for planning your days, choosing what fits, and moving forward with more clarity and less pressure."
                 />
               </AnimatedSection>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -275,7 +275,7 @@ export default async function HomePage() {
                 <SectionHeader
                   label="The journal"
                   title={<>Real rhythms for real <em>families.</em></>}
-                  copy="Editorial, warm, and specific — posts should feel like a note from a friend who is a few steps ahead."
+                  copy="Notes from the middle of family life: what helps, what we are learning, and what makes the day feel more peaceful and doable."
                 />
               </AnimatedSection>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -300,7 +300,7 @@ export default async function HomePage() {
                   <SectionHeader
                     label="Dani's picks"
                     title={<>Favorites with a <em>reason.</em></>}
-                    copy="A tighter, more premium shelf for the books, tools, and finds Daniela can actually stand behind."
+                    copy="Books, tools, and homeschool finds Daniela has used, loved, or found genuinely helpful enough to share."
                   />
                 </AnimatedSection>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -326,7 +326,7 @@ export default async function HomePage() {
                 <h2 className="dani-display text-5xl text-[color:var(--dani-cream)] sm:text-6xl lg:text-7xl">A family of useful <em>projects.</em></h2>
               </div>
               <p className="max-w-2xl font-sans text-sm leading-7 text-[rgba(250,246,240,0.78)] sm:text-base">
-                A clean pathway into Daniela&apos;s broader ecosystem — helpful tools without turning the homepage into a link farm.
+                Explore the practical tools Daniela is building for homeschool families who want clear answers and steadier rhythms.
               </p>
             </div>
             <div className="grid gap-4 lg:grid-cols-3">
