@@ -2,6 +2,13 @@
 
 A production-ready Next.js website for Daniela Cerrato's homeschooling brand. Features a public blog, digital product shop with Stripe payments, curated affiliate library, and a full mobile-first admin dashboard.
 
+## Launch audit — 2026-05-29
+- Repo/source verified: `/home/sandreu/Danis-Site`, remote `sandreu-ai/Danis-Site`, HEAD `1039535` (`Fix homepage audience-facing copy`).
+- Safe local checks passed: `npm test` (12/12 passing) and `npm run build` (Next.js production build succeeded, 25 app routes generated/validated as applicable).
+- Human approval gates remain: live homepage copy needs desktop/mobile review; Independence-at-Home Checklist Pack assets, upload notes, product-page copy, pricing, and publish timing need Daniela/owner approval before publishing or connecting live purchase flow.
+- Media-kit gate remains: media kit has not been human-approved/verified in this repo audit.
+- External verification gates remain: test Dani's Picks email gate/admin subscriber export and Stripe/Resend purchase-email flow with controlled test records only; do not store credentials, raw subscriber data, or customer data in repo/docs.
+
 ---
 
 ## Tech Stack
